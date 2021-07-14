@@ -1,9 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-public class OnTriggerView : MonoBehaviour
+public class OnTriggerCollisionView : MonoBehaviour
 {
-    public bool isOnTrigger = false;
+    public bool isOnTrigger { get; private set; }
     private int _countTrigger = 0;
 
     public event Action<Collider2D, bool> evtUpdate = delegate { };

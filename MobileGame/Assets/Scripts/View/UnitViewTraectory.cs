@@ -6,28 +6,12 @@ namespace MobileGame
     public sealed class UnitViewTraectory : MonoBehaviour, ITraectory
     {
         [SerializeField] private Traectory[] _track;
-        public OnTriggerView onTriggerView => _onTriggerView;
-        [SerializeField] private OnTriggerView _onTriggerView;
         private Color _clr = Color.red;
         private float _sizeTrack = 0.05f;
 
         public Traectory[] Track
         {
             get => _track;
-        }
-
-        private void OnDrawGizmosSelected()
-        {
-            if (onTriggerView!=null)
-            {
-                var colliders = onTriggerView.GetComponents<BoxCollider2D>();
-                Gizmos.color = Color.red;
-                for (int i = 0; i < colliders.Length; i++)
-                {
-                    Gizmos.DrawWireCube(colliders[i].transform.position, colliders[i].size);
-                }
-                
-            }
         }
 
         private void OnDrawGizmos()
