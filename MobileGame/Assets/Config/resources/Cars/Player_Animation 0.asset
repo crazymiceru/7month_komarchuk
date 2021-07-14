@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 914975f201565d94487552afbca400c1, type: 3}
+  m_Name: Player_Animation 0
+  m_EditorClassIdentifier: 
+  speed: 10
+  _animationData:
+  - _isLoop: 1
+    _typeAnimation: 1
+    _sprites:
+    - {fileID: 21300000, guid: 90f91bf07d6aec14bb60e830bf64792c, type: 3}
+  - _isLoop: 1
+    _typeAnimation: 2
+    _sprites:
+    - {fileID: 21300000, guid: 90f91bf07d6aec14bb60e830bf64792c, type: 3}
