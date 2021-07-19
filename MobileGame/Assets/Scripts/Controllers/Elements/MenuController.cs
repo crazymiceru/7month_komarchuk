@@ -8,6 +8,7 @@ namespace MobileGame
         private ControlLeak _controlLeak = new ControlLeak("MenuController");
         private SubscriptionField<GameState> _gameState;
         private GameObject _menu;
+        private Button _button;
 
         internal MenuController(SubscriptionField<GameState> gameState, GameObject menu)
         {
@@ -17,7 +18,8 @@ namespace MobileGame
             var goStartGame=menu.transform.GetComponentInChildren<TagButtonStartGame>();
             if (goStartGame.TryGetComponent<Button>(out Button button))
             {
-                button.onClick.AddListener(StartGame);
+                _button = button;
+                _button.onClick.AddListener(StartGame);
             }
         }
 
@@ -25,6 +27,11 @@ namespace MobileGame
         {
             _gameState.Value = GameState.startGame;
             Object.Destroy(_menu);
+        }
+
+        protected override void OnDispose()
+        {
+            _button?.onClick.RemoveAllListeners();
         }
     }
 }

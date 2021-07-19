@@ -92,8 +92,7 @@ namespace MobileGame
         protected GameObjectData CreateGameObject(Transform folder, string nameRes)
         {
             var data = CreateUnitBasic(nameRes);
-            data.gameObject = GameObject.Instantiate(data.prefabGameObject);            
-            SetFolder(folder, data);
+            data.gameObject = GameObject.Instantiate(data.prefabGameObject,folder);
             GetInfoGameObject(data);
             _gameObjects.Add(data);
             return data;
@@ -142,7 +141,11 @@ namespace MobileGame
         public void Dispose()
         {
             OnDispose();
+            Clear();
+        }
 
+        protected void Clear()
+        {
             for (int i = 0; i < _iControllers.Count; i++)
             {
                 ListControllers.Delete(_iControllers[i]);
@@ -155,7 +158,6 @@ namespace MobileGame
                 Object.Destroy(_gameObjects[i].gameObject);
             }
             _gameObjects.Clear();
-
         }
 
         protected virtual void OnDispose()
