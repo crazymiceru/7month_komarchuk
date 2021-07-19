@@ -11,7 +11,7 @@ namespace MobileGame
             LoadResources.Init();
             ListControllers.Init();
 
-            new GameBuild().Create();
+            new GameController();
         }
 
         private void Start()

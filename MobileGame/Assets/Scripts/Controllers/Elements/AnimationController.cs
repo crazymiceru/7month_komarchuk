@@ -38,7 +38,6 @@ namespace MobileGame
             if (_animationData == null) Debug.LogWarning($"Dont set animation {typeAnimation} on {(_unitView as MonoBehaviour).name} object");
             _currentFrame = 0;
             _isStop = false;
-            UpdateSprite();
         }
 
         private void UpdateSprite() => _unitView.objectSpriteRednderer.sprite = _animationData.sprites[(int)_currentFrame];
@@ -53,13 +52,19 @@ namespace MobileGame
             if (!_isStop)
             {
                 _currentFrame += _animationCfg.Speed * deltaTime;
+//                Debug.Log($"Animation: {(_unitView as MonoBehaviour).gameObject.name} currentFrame:{_currentFrame}");
                 if (_currentFrame >= _animationData.sprites.Length)
                 {
                     if (_animationData.isLoop)
                     {
-                        _currentFrame -= _animationData.sprites.Length;
+                        //_currentFrame -= _animationData.sprites.Length;
+                        _currentFrame = _currentFrame % _animationData.sprites.Length;
                     }
-                    else _isStop = true;
+                    else
+                    { 
+                        _currentFrame = _animationData.sprites.Length - 1;
+                        _isStop = true;
+                    }
                 }
             }
             if (!_isStop) UpdateSprite();

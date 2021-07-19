@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 914975f201565d94487552afbca400c1, type: 3}
   m_Name: Player_Animation 0
   m_EditorClassIdentifier: 
-  speed: 10
+  _speed: 10
   _animationData:
   - _isLoop: 1
     _typeAnimation: 1
