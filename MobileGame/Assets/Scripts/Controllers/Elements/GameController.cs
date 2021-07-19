@@ -47,7 +47,7 @@ namespace MobileGame
         private void StartGame()
         {
             Clear();
-            _gameM.Analitics.SendMessage("Start Game", "Test");
+            _gameM.Analitics.SendMessage("Start Game");
             AddController(new SceneController());
             AddController(new PlayerBuild().Create(_gameM));
             AddController(new SetBonuceController(_gameM));
