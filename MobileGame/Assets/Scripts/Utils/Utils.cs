@@ -54,12 +54,13 @@ namespace MobileGame
             return null;
         }
 
-        public static ControllerBasic ParseType(TypeItem typeItem)
+        public static ControllerBasic ParseType(TypeUnit typeItem)
         {
             return typeItem switch
             {
-                TypeItem.Player => new PlayerBuild(),
-                TypeItem.Any => new EmptyBuild(),
+                TypeUnit.Player => new PlayerBuild(),
+                TypeUnit.UpgradeItem => new UpgradeItemBuild(),
+                TypeUnit.None => new EmptyBuild(),
                 _ => new EmptyBuild(),
             };
         }

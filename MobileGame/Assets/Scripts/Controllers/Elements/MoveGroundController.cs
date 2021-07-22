@@ -10,13 +10,23 @@ namespace MobileGame
         private DataUnit _unitData;
         private iReadOnlySubscriptionField<Vector2> _control;
         private iReadOnlySubscriptionField<bool> _isJump;
+        private iReadOnlySubscriptionField<float> _maxSpeed;
+        private iReadOnlySubscriptionField<float> _powerJump;
+        private iReadOnlySubscriptionField<bool> _isOnGround;
 
-        internal MoveGroundController(iReadOnlySubscriptionField<Vector2> control, iReadOnlySubscriptionField<bool> isJump, IUnitView unitView, DataUnit unitData)
+        internal MoveGroundController(iReadOnlySubscriptionField<Vector2> control, iReadOnlySubscriptionField<bool> isJump,
+            iReadOnlySubscriptionField<float> maxSpeed,
+            iReadOnlySubscriptionField<float> powerJump,
+            iReadOnlySubscriptionField<bool> isOnGround,
+            IUnitView unitView, DataUnit unitData)
         {
-            _control= control;
+            _control = control;
             _isJump = isJump;
             _unitView = unitView;
             _unitData = unitData;
+            _maxSpeed = maxSpeed;
+            _powerJump = powerJump;
+            _isOnGround = isOnGround;
         }
 
         public void Execute(float deltaTime)
@@ -29,7 +39,7 @@ namespace MobileGame
         {
             var velocity = _unitView.objectRigidbody2D.velocity;
             velocity.y = 0;
-            velocity = Vector3.ClampMagnitude(velocity, _unitData.MaxSpeed);
+            velocity = Vector3.ClampMagnitude(velocity, _maxSpeed.Value);
             velocity.y = _unitView.objectRigidbody2D.velocity.y;
             _unitView.objectRigidbody2D.velocity = velocity;
         }
@@ -38,13 +48,7 @@ namespace MobileGame
         {
             leftRight.x = deltaTime * _unitData.PowerMove * _unitView.objectRigidbody2D.mass * _control.Value.x;
             _unitView.objectRigidbody2D.AddForce(leftRight);
-            //if (leftRight.x != 0) _unit.command = Commands.run;
-            //else _unit.command = Commands.stop;
-            //if (_unitView.objectRigidbody2D.velocity.y < -0.1f /*&& !_unit.isOnGround*/) _unit.command = Commands.fall;
-            //if (_unit.isOnGround) _unit.command = Commands.onGround;
-            if (_isJump.Value ) _unitView.objectRigidbody2D.AddForce(_unitData.PowerJump * _unitView.objectRigidbody2D.mass * Vector2.up);
-            //if (_unit.isJump) _unit.command = Commands.jump;
-
+            if (_isJump.Value && _isOnGround.Value) _unitView.objectRigidbody2D.AddForce(_powerJump.Value * _unitView.objectRigidbody2D.mass * Vector2.up);
         }
 
     }

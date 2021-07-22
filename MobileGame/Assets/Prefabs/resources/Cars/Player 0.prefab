@@ -1,37 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!58 &9081948715417245744
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1176380138577291138}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.37
---- !u!58 &828105718690820022
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7193750068188253191}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.37
 --- !u!1 &7501548420233603253
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7501548420233603253}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -3, z: 0}
+  m_LocalPosition: {x: -3, y: -3.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7168130127642293848}
@@ -149,7 +117,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 72ae09dae7b5631438514f340eaad002, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -261,15 +229,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5575637313180607653, guid: b041b3363c435ac4381eba50068a5f66, type: 3}
       propertyPath: m_Name
-      value: Whell (1)
+      value: WhellFront
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b041b3363c435ac4381eba50068a5f66, type: 3}
---- !u!1 &7193750068188253191 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5575637313180607653, guid: b041b3363c435ac4381eba50068a5f66, type: 3}
-  m_PrefabInstance: {fileID: 3365861325032302754}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1223943689807601117 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4488298032644142463, guid: b041b3363c435ac4381eba50068a5f66, type: 3}
@@ -328,15 +291,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5575637313180607653, guid: b041b3363c435ac4381eba50068a5f66, type: 3}
       propertyPath: m_Name
-      value: Whell
+      value: WhellBack
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b041b3363c435ac4381eba50068a5f66, type: 3}
---- !u!1 &1176380138577291138 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5575637313180607653, guid: b041b3363c435ac4381eba50068a5f66, type: 3}
-  m_PrefabInstance: {fileID: 6715978756700390183}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7168130127642293848 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4488298032644142463, guid: b041b3363c435ac4381eba50068a5f66, type: 3}

@@ -98,13 +98,13 @@ namespace MobileGame
             return data;
         }
 
-        protected GameObjectData SetGameObject(GameObject gameObject)
+        public ControllerBasic SetGameObject(GameObject gameObject)
         {
             var data = new GameObjectData();
             data.gameObject = gameObject;
             GetInfoGameObject(data);
             _gameObjects.Add(data);
-            return data;
+            return this;
         }
 
         private void SetFolder(Transform folder, GameObjectData data)
@@ -138,7 +138,12 @@ namespace MobileGame
             }
         }
 
-        public void Dispose()
+        public GameObjectData this[int index]
+        {
+            get=> _gameObjects[index];
+        }
+
+public void Dispose()
         {
             OnDispose();
             Clear();
@@ -163,6 +168,11 @@ namespace MobileGame
         protected virtual void OnDispose()
         {
 
+        }
+
+        internal virtual ControllerBasic CreateControllers()
+        {
+            return this;
         }
 
         #endregion

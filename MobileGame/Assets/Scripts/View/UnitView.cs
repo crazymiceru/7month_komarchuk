@@ -21,10 +21,10 @@ namespace MobileGame
         public SpriteRenderer objectSpriteRednderer => _objectSpriteRednderer;
         private SpriteRenderer _objectSpriteRednderer;
 
-        [SerializeField] private TypeItem _typeItem;
+        [SerializeField] private TypeUnit _typeItem;
         [SerializeField] private int _numCfg = 0;
         private PoolInstatiate _poolInstatiate;
-        private bool _isPool = false;
+        private bool _isPool;
 
         private Dictionary<int, int> _listCollisionEnter = new Dictionary<int, int>();
 
@@ -66,15 +66,15 @@ namespace MobileGame
 
         #region Utils
 
-        public (TypeItem type, int cfg) GetTypeItem()
+        public (TypeUnit type, int cfg) GetTypeItem()
         {
             return (_typeItem, _numCfg);
         }
 
-        public void SetTypeItem(TypeItem type = TypeItem.Any, int cfg = -1)
+        public void SetTypeItem(TypeUnit type = TypeUnit.None, int cfg = -1)
         {
             if (cfg == -1) cfg = _numCfg;
-            if (type == TypeItem.Any) type = _typeItem;
+            if (type == TypeUnit.None) type = _typeItem;
             _typeItem = type; _numCfg = cfg;
         }
 

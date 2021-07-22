@@ -11,8 +11,8 @@ namespace MobileGame
         {
             var data = CreateGameObject(Reference.ActiveElements, _nameRes);
             var trailM = new ControlM();
-            AddController(new TouchController(trailM));
-            AddController(new PositionTrailTouchController(trailM.positionTouch, trailM.isNewTouch, data.gameObject, Reference.ActiveElements));
+            AddController(new AllInputsController(trailM));
+            AddController(new PositionTrailTouchController(trailM.positionCursor, trailM.isNewTouch, data.gameObject, Reference.ActiveElements));
         }
     }
 }
