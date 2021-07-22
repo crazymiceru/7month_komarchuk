@@ -8,7 +8,7 @@ namespace MobileGame
         private ControlM _controlM;
         private Camera _camera;
         private Vector3 _startPosition;
-        private Vector2 _vector2Zero= Vector2.zero;
+        private Vector2 _vector2Zero = Vector2.zero;
 
         internal TouchController(ControlM controlM)
         {
@@ -24,7 +24,7 @@ namespace MobileGame
                 var item = Input.touches[0];
                 if (item.phase == TouchPhase.Moved || item.phase == TouchPhase.Began)
                 {
-                    var currentPosition = _camera.ScreenToWorldPoint(item.position);
+                    var currentPosition = _camera.ScreenToWorldPoint(item.position) - _camera.transform.position;
                     _controlM.positionCursor.Value = currentPosition;
 
                     if (item.phase == TouchPhase.Began)
@@ -41,7 +41,7 @@ namespace MobileGame
                 }
             }
             else _controlM.control.Value = _vector2Zero;
-            if (Input.touches.Length >= 2 && Input.touches[1].phase==TouchPhase.Began) _controlM.isJump.Value = true;
+            if (Input.touches.Length >= 2 && Input.touches[1].phase == TouchPhase.Began) _controlM.isJump.Value = true;
             else _controlM.isJump.Value = false;
         }
 

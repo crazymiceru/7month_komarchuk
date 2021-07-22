@@ -27,6 +27,7 @@ namespace MobileGame
                 if (GUILayout.Button("X", GUILayout.Width(win), GUILayout.Width(win10)))
                 {
                     _itemsArray.DeleteItems(i);
+                    EditorUtility.SetDirty(_itemsArray);
                     break;
                 }
 
@@ -42,9 +43,11 @@ namespace MobileGame
             if (GUILayout.Button("Add Item", GUILayout.Width(win)))
             {
                 _itemsArray.AddItems();
+                EditorUtility.SetDirty(_itemsArray);
             }
                 EditorGUILayout.EndVertical();
 
+            if (GUI.changed) EditorUtility.SetDirty(_itemsArray);
         }
     }
 }

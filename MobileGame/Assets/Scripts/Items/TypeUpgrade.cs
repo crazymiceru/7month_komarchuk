@@ -4,6 +4,8 @@
     {
         none = 0,
         speed = 1,
-        jump = 2
+        jump = 2,
+        setSize = 3,
+
     }
 }

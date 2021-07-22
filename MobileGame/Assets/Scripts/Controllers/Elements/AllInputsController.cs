@@ -10,9 +10,18 @@ namespace MobileGame
 
         internal AllInputsController(ControlM controlM)
         {
+            Debug.Log($"Remote:{UnityEditor.EditorApplication.isRemoteConnected}");
             _controlM = controlM;
-            if (Application.isEditor) AddController(new InputController(controlM));
-            else AddController(new TouchController(controlM));
+            if (Application.isEditor && !UnityEditor.EditorApplication.isRemoteConnected)
+            {
+                AddController(new InputController(controlM));
+                Debug.Log($"Keyboard Control");
+            }
+            else
+            {
+                AddController(new TouchController(controlM));
+                Debug.Log($"Touch Control");
+            }
 
         }
     }
