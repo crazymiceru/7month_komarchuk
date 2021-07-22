@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class OnTriggerCollisionView : MonoBehaviour
+public class OnTriggerView : MonoBehaviour
 {
     public bool isOnTrigger { get; private set; }
     private int _countTrigger = 0;
@@ -28,5 +28,4 @@ public class OnTriggerCollisionView : MonoBehaviour
             evtUpdate.Invoke(other, false);
         }
     }
-
 }

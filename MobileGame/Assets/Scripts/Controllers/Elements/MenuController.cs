@@ -25,7 +25,7 @@ namespace MobileGame
 
         private void StartGame()
         {
-            _gameState.Value = GameState.startGame;
+            _gameState.Value = GameState.startLevel;
             Object.Destroy(_menu);
         }
 

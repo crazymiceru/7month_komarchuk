@@ -5,14 +5,11 @@ namespace MobileGame
 
     public sealed class UnitViewTraectory : MonoBehaviour, ITraectory
     {
-        [SerializeField] private Traectory[] _track;
         private Color _clr = Color.red;
         private float _sizeTrack = 0.05f;
 
-        public Traectory[] Track
-        {
-            get => _track;
-        }
+        [SerializeField] private Traectory[] _track;
+        public Traectory[] Track => _track;
 
         private void OnDrawGizmos()
         {

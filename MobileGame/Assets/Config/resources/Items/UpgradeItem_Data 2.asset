@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cefaf1007a0896499251ae2828591d1, type: 3}
+  m_Name: UpgradeItem_Data 2
+  m_EditorClassIdentifier: 
+  _powerMove: 500
+  _powerJump: 300
+  _minSqrLenghthTraectory: 0.2
+  _maxSpeed: 10
+  _maxLive: 1
+  _destroyEffects: {fileID: 0}
+  _timeViewDestroyEffects: 10
+  _attackPower: 0
+  _addScores: 0

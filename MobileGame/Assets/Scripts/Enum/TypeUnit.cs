@@ -2,12 +2,10 @@
 
 namespace MobileGame
 {
-    [Serializable]
-    public enum TypeItem
+    public enum TypeUnit
     {
-        Any = 0,
+        None = 0,
         Player = 1,
+        UpgradeItem=2,
     }
-
-
 }

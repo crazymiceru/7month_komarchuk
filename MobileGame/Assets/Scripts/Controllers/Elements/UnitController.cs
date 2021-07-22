@@ -10,10 +10,10 @@ namespace MobileGame
         private IInteractive _iInteractive;
         private GameObject _gameObject;
         private SubscriptionField<int> _scores;
-
+  
         #region Init
 
-        internal UnitController(UnitM unit,SubscriptionField<int> scores , IInteractive iInteractive, TypeItem typeItem, DataUnit unitData)
+        internal UnitController(UnitM unit, SubscriptionField<int> scores , IInteractive iInteractive, TypeUnit typeItem, DataUnit unitData)
         {
             _unit = unit;
             _scores = scores;
@@ -24,7 +24,8 @@ namespace MobileGame
             _iInteractive.evtCollision += OutInteractive;
             _unit.evtDecLives += DecLive;
             _gameObject = (_iInteractive as MonoBehaviour).gameObject;
-
+            _unit.maxSpeed.Value = unitData.MaxSpeed;
+            _unit.powerJump.Value = unitData.PowerJump;
         }
 
         public void Initialization()
@@ -69,8 +70,17 @@ namespace MobileGame
         {
             if (isEnter)
             {
-                var scores=ui.Attack(_unit.packInteractiveData.Value).scores;
-                _scores.Value += scores;
+                //Debug.Log($"Attack {_gameObject.name} on {(ui as MonoBehaviour).name}");
+                var result=ui.Attack(_unit.packInteractiveData.Value);
+                if (result.isDead)
+                {
+                    if (ui is IUnitView)
+                    { var uv = ui as IUnitView;
+                        var type = uv.GetTypeItem();
+                        _unit.killTypeItem.Value = type;
+                    }
+                }
+                _scores.Value += result.scores;
             }
         }
 

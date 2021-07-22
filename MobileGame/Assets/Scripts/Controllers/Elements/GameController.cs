@@ -26,7 +26,7 @@ namespace MobileGame
                 case GameState.menu:
                     Menu();
                     break;
-                case GameState.startGame:
+                case GameState.startLevel:
                     StartGame();
                     break;
                 case GameState.gameOver:
@@ -46,11 +46,23 @@ namespace MobileGame
 
         private void StartGame()
         {
+            Transform playerTransform;
+            Transform skyTransform;
             Clear();
             _gameM.Analitics.SendMessage("Start Game");
-            AddController(new SceneController());
-            AddController(new PlayerBuild().Create(_gameM));
-            AddController(new SetBonuceController(_gameM));
+            var player = new PlayerBuild().Create(_gameM);
+            AddController(player);
+            playerTransform = player[0].gameObject.transform;
+            var sceneController = new SceneController(1); 
+            AddController(sceneController);
+            var go = sceneController[0];
+            skyTransform= go.gameObject.transform.GetComponentInChildren<TagSky>().gameObject.transform;
+            if (playerTransform != null && skyTransform != null)
+            {
+                AddController(new ParallaxController(skyTransform, playerTransform, new Vector2(0.4f, 1), new Vector2(32, 0)));
+                AddController(new ParallaxController(Reference.MainCamera.transform, playerTransform, new Vector2(0f, 1f), new Vector2(0, 0)));
+            }
+            AddController(new ActivateMazeElementsController(go.gameObject.transform));
         }
     }
 }

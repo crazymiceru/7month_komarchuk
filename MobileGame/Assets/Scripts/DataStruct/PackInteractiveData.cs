@@ -5,8 +5,8 @@ namespace MobileGame
     public sealed class PackInteractiveData
     {
         public int attackPower { get; }
-        public TypeItem typeItem { get; }
-        public PackInteractiveData(int attackPower, TypeItem typeItem)
+        public TypeUnit typeItem { get; }
+        public PackInteractiveData(int attackPower, TypeUnit typeItem)
         {
             this.attackPower = attackPower;
             this.typeItem = typeItem;            
