@@ -4,9 +4,9 @@
     {
         private ControlLeak _controlLeak = new ControlLeak("GetKillItemBonuceController");
         private iReadOnlySubscriptionField<(TypeUnit typeUnit, int cfg)> _killTypeItem;
-        private IUpgardeM _upgardeM;
+        private IUpgradeM _upgardeM;
 
-        internal GetKillItemBonuceController(iReadOnlySubscriptionField<(TypeUnit typeUnit, int cfg)> killTypeItem, IUpgardeM upgardeM)
+        internal GetKillItemBonuceController(iReadOnlySubscriptionField<(TypeUnit typeUnit, int cfg)> killTypeItem, IUpgradeM upgardeM)
         {
             _killTypeItem = killTypeItem;
             _upgardeM = upgardeM;

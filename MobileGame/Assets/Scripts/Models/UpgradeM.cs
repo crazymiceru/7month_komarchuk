@@ -4,42 +4,43 @@ using UnityEngine;
 
 namespace MobileGame
 {
-    public interface IUpgardeM
-    {
-        public void AddItem(int ID);
-        public void RemoveItem(int ID);
-    }
-
-    public sealed class UpgradeM : IUpgardeM
+    public sealed class UpgradeM : IUpgradeM
     {
         private ControlLeak _controlLeak = new ControlLeak("UpgradeM");
         private Dictionary<ItemCfg, ItemCfg> _upgrades = new Dictionary<ItemCfg, ItemCfg>();
         public event Action<UpgradeItemCfg> EvtAddItem = delegate { };
         public event Action<UpgradeItemCfg> EvtRemoveItem = delegate { };
 
-        private Dictionary<int, UpgradeItemCfg> _allUpgrades = new Dictionary<int, UpgradeItemCfg>();
+        public Dictionary<int, ItemCfg> allUpgrades  {get; private set; }
+        public Dictionary<int, ItemCfg> allPlaces { get; private set; }
 
-        public UpgradeM(ItemsArray itemsForUpgrades)
+        public UpgradeM(ItemsArray itemsForUpgrades, ItemsArray places)
         {
-            for (int i = 0; i < itemsForUpgrades.ItemCfg.Count; i++)
+            allUpgrades = new Dictionary<int, ItemCfg>();
+            MakeDictionary(itemsForUpgrades, allUpgrades);
+            allPlaces = new Dictionary<int, ItemCfg>();
+            MakeDictionary(places, allPlaces);
+        }
+
+        private void MakeDictionary(ItemsArray itemsArray, Dictionary<int, ItemCfg> dict)
+        {
+
+            for (int i = 0; i < itemsArray.ItemCfg.Count; i++)
             {
-                if (itemsForUpgrades.ItemCfg[i] is UpgradeItemCfg)
-                {
-                    UpgradeItemCfg item = itemsForUpgrades.ItemCfg[i] as UpgradeItemCfg;
-                    if (!_allUpgrades.ContainsKey(item.Id))
+                    ItemCfg item = itemsArray.ItemCfg[i];
+                    if (!dict.ContainsKey(item.Id))
                     {
-                        _allUpgrades.Add(item.Id, item);
+                            dict.Add(item.Id, item);
                     }
-                    else Debug.LogWarning($"Double Id of elements {item}:{_allUpgrades[item.Id]}");
-                }
-                else Debug.LogWarning($"Items is not intended for updating {itemsForUpgrades.ItemCfg[i]}");
+                    else Debug.LogWarning($"Double Id of elements {item}:{dict[item.Id]}");
             }
         }
 
         public void AddItem(int ID)
         {
-            if (_allUpgrades.TryGetValue(ID, out UpgradeItemCfg upgradeItemCfg))
+            if (allUpgrades.TryGetValue(ID, out ItemCfg itemCfg))
             {
+                var upgradeItemCfg = itemCfg as UpgradeItemCfg;
                 if (_upgrades.ContainsKey(upgradeItemCfg.PlaceOfUpgrade))
                 {
                     EvtRemoveItem.Invoke(_upgrades[upgradeItemCfg.PlaceOfUpgrade] as UpgradeItemCfg);
@@ -54,8 +55,9 @@ namespace MobileGame
 
         public void RemoveItem(int ID)
         {
-            if (_allUpgrades.TryGetValue(ID, out UpgradeItemCfg upgradeItemCfg))
+            if (allUpgrades.TryGetValue(ID, out ItemCfg itemCfg))
             {
+                var upgradeItemCfg = itemCfg as UpgradeItemCfg;
                 if (_upgrades.ContainsKey(upgradeItemCfg))
                 {
                     _upgrades.Remove(upgradeItemCfg.PlaceOfUpgrade);
