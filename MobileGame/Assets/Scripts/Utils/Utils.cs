@@ -28,41 +28,5 @@ namespace MobileGame
         {
             return new Vector2(x == null ? org.x : (float)x, y == null ? org.y : (float)y);
         }
-
-        public static void SetPositionSpriteGround(this GameObject gameObject, GameObject targetGameObject)
-        {
-
-            var position = targetGameObject.transform.position;
-
-            if (gameObject.TryGetComponent<SpriteRenderer>(out SpriteRenderer sprite)
-                && targetGameObject.TryGetComponent<SpriteRenderer>(out SpriteRenderer spriteTarget))
-            {
-                gameObject.transform.position = position.Change(y: position.y + sprite.bounds.size.y / 2 - spriteTarget.bounds.size.y  / 2);
-            }
-        }
-
-        public static ControllerBasic InstantiateCntr(GameObject gameObject)
-        {
-            if (gameObject.TryGetComponent<IUnitView>(out IUnitView unitView))
-            {
-                var t = unitView.GetTypeItem();
-                ControllerBasic go = Utils.ParseType(t.type)
-                           .SetNumCfg(t.cfg);
-                return go;
-            }
-            Debug.LogWarning($"Dont find netView at object {gameObject.name}");
-            return null;
-        }
-
-        public static ControllerBasic ParseType(TypeUnit typeItem)
-        {
-            return typeItem switch
-            {
-                TypeUnit.Player => new PlayerBuild(),
-                TypeUnit.UpgradeItem => new UpgradeItemBuild(),
-                TypeUnit.None => new EmptyBuild(),
-                _ => new EmptyBuild(),
-            };
-        }
     }
 }

@@ -4,7 +4,7 @@
     {
         private ControlLeak _controlLeak = new ControlLeak("");
 
-        internal EmptyController() : base()
+        internal EmptyController()
         {
         }
     }

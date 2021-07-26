@@ -2,7 +2,7 @@
 {
     internal interface IPool
     {
-        public void SetPoolDestroy();
-        public void ClearEvt();
+        void SetPoolDestroy();
+        void ClearEvt();
     }
 }

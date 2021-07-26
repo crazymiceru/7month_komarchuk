@@ -1,15 +1,17 @@
 ﻿namespace MobileGame
 {
-    internal sealed class GetKillItemBonuceController : ControllerBasic
+    internal sealed class GetKillItemModificationController : ControllerBasic
     {
         private ControlLeak _controlLeak = new ControlLeak("GetKillItemBonuceController");
         private iReadOnlySubscriptionField<(TypeUnit typeUnit, int cfg)> _killTypeItem;
-        private IUpgradeM _upgardeM;
+        private IItemsM<UpgradeItemCfg> _upgardeM;
+        private IItemsM<EffectsItemCfg> _effectsM;
 
-        internal GetKillItemBonuceController(iReadOnlySubscriptionField<(TypeUnit typeUnit, int cfg)> killTypeItem, IUpgradeM upgardeM)
+        internal GetKillItemModificationController(iReadOnlySubscriptionField<(TypeUnit typeUnit, int cfg)> killTypeItem, IItemsM<UpgradeItemCfg> upgardeM, IItemsM<EffectsItemCfg> effectsM)
         {
             _killTypeItem = killTypeItem;
             _upgardeM = upgardeM;
+            _effectsM = effectsM;
             _killTypeItem.Subscribe(Activate);
         }
 
@@ -20,10 +22,18 @@
                 case TypeUnit.UpgradeItem:
                     _upgardeM.AddItem(killTypeItemValue.cfg);
                     break;
+                case TypeUnit.EffectsItem:
+                    _effectsM.AddItem(killTypeItemValue.cfg);
+                    break;
+
                 default:
                     break;
             }
         }
 
+        protected override void OnDispose()
+        {
+            _killTypeItem.UnSubscribe(Activate);
+        }
     }
 }

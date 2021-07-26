@@ -4,41 +4,29 @@ using UnityEngine;
 
 namespace MobileGame
 {
-    public sealed class UpgradeM : IUpgradeM
+    public sealed class UpgradeM :IItemsM<UpgradeItemCfg>
     {
+        public event Action<UpgradeItemCfg,bool> EvtAddItem = delegate { };
+        public event Action<UpgradeItemCfg> EvtRemoveItem = delegate { };
+        public IReadOnlyDictionary<int, ItemCfg> allItems { get; private set; }
+        public IReadOnlyDictionary<int, ItemCfg> allPlaces { get; private set; }
+
         private ControlLeak _controlLeak = new ControlLeak("UpgradeM");
         private Dictionary<ItemCfg, ItemCfg> _upgrades = new Dictionary<ItemCfg, ItemCfg>();
-        public event Action<UpgradeItemCfg> EvtAddItem = delegate { };
-        public event Action<UpgradeItemCfg> EvtRemoveItem = delegate { };
-
-        public Dictionary<int, ItemCfg> allUpgrades  {get; private set; }
-        public Dictionary<int, ItemCfg> allPlaces { get; private set; }
 
         public UpgradeM(ItemsArray itemsForUpgrades, ItemsArray places)
         {
-            allUpgrades = new Dictionary<int, ItemCfg>();
-            MakeDictionary(itemsForUpgrades, allUpgrades);
-            allPlaces = new Dictionary<int, ItemCfg>();
-            MakeDictionary(places, allPlaces);
-        }
-
-        private void MakeDictionary(ItemsArray itemsArray, Dictionary<int, ItemCfg> dict)
-        {
-
-            for (int i = 0; i < itemsArray.ItemCfg.Count; i++)
-            {
-                    ItemCfg item = itemsArray.ItemCfg[i];
-                    if (!dict.ContainsKey(item.Id))
-                    {
-                            dict.Add(item.Id, item);
-                    }
-                    else Debug.LogWarning($"Double Id of elements {item}:{dict[item.Id]}");
-            }
+            var _allUpgrades = new Dictionary<int, ItemCfg>();
+            UtilsUnit.DecompositeItems(itemsForUpgrades, _allUpgrades);
+            allItems = _allUpgrades;
+            var _allPlaces = new Dictionary<int, ItemCfg>();
+            UtilsUnit.DecompositeItems(places, _allPlaces);
+            allPlaces = _allPlaces;
         }
 
         public void AddItem(int ID)
         {
-            if (allUpgrades.TryGetValue(ID, out ItemCfg itemCfg))
+            if (allItems.TryGetValue(ID, out ItemCfg itemCfg))
             {
                 var upgradeItemCfg = itemCfg as UpgradeItemCfg;
                 if (_upgrades.ContainsKey(upgradeItemCfg.PlaceOfUpgrade))
@@ -47,7 +35,7 @@ namespace MobileGame
                     _upgrades[upgradeItemCfg.PlaceOfUpgrade] = upgradeItemCfg;
                 }
                 else _upgrades.Add(upgradeItemCfg.PlaceOfUpgrade, upgradeItemCfg);
-                EvtAddItem.Invoke(upgradeItemCfg);
+                EvtAddItem.Invoke(upgradeItemCfg,false);
                 Debug.Log($"Added the UpgradeItem: {upgradeItemCfg} on Place:{upgradeItemCfg.PlaceOfUpgrade}");
             }
             else Debug.LogWarning($"Attempt to add  an unknown UpgradeItemID:{ID}");
@@ -55,7 +43,7 @@ namespace MobileGame
 
         public void RemoveItem(int ID)
         {
-            if (allUpgrades.TryGetValue(ID, out ItemCfg itemCfg))
+            if (allItems.TryGetValue(ID, out ItemCfg itemCfg))
             {
                 var upgradeItemCfg = itemCfg as UpgradeItemCfg;
                 if (_upgrades.ContainsKey(upgradeItemCfg))

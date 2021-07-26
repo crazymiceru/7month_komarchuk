@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace MobileGame
 {
-    [CreateAssetMenu(menuName = "My/Item", fileName = "Item")]
+    [CreateAssetMenu(menuName = "My/Items/Item", fileName = "Item")]
     public class ItemCfg : ScriptableObject
     {
         [SerializeField] private int _id;

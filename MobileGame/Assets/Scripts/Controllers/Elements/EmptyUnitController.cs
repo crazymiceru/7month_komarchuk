@@ -6,7 +6,7 @@
         private UnitM _unit;
         private IUnitView _iUnitView;
 
-        internal EmptyUnitController(UnitM unit, IUnitView iUnitView) : base()
+        internal EmptyUnitController(UnitM unit, IUnitView iUnitView)
         {
             _unit = unit;
             _iUnitView = iUnitView;

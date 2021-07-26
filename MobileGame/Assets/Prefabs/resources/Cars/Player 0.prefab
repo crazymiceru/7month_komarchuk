@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7501548420233603254}
   - component: {fileID: 3709437498684765451}
   - component: {fileID: 9081091986473003261}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,6 +231,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WhellFront
       objectReference: {fileID: 0}
+    - target: {fileID: 5575637313180607653, guid: b041b3363c435ac4381eba50068a5f66, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b041b3363c435ac4381eba50068a5f66, type: 3}
 --- !u!4 &1223943689807601117 stripped
@@ -292,6 +296,10 @@ PrefabInstance:
     - target: {fileID: 5575637313180607653, guid: b041b3363c435ac4381eba50068a5f66, type: 3}
       propertyPath: m_Name
       value: WhellBack
+      objectReference: {fileID: 0}
+    - target: {fileID: 5575637313180607653, guid: b041b3363c435ac4381eba50068a5f66, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b041b3363c435ac4381eba50068a5f66, type: 3}

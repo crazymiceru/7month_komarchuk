@@ -7,11 +7,11 @@ namespace MobileGame
     internal sealed class UpgradeShowController : ControllerBasic
     {
         private ControlLeak _controlLeak = new ControlLeak("UpgradeShowController");
-        private const string _nameRes = "Items/Equip";
-        private IUpgradeM _upgradeM;
+        private const string _nameRes = "Items/EquipPlace";
+        private UpgradeM _upgradeM;
         private Dictionary<ItemCfg, Image> placeUpgradesTransform=new Dictionary<ItemCfg, Image>();
 
-        internal UpgradeShowController(IUpgradeM upgradeM) : base()
+        internal UpgradeShowController(UpgradeM upgradeM)
         {
             var data = CreateGameObject(Reference.Canvas, _nameRes);
             _upgradeM = upgradeM;
@@ -33,8 +33,9 @@ namespace MobileGame
             }
         }
 
-        private void AddItem(UpgradeItemCfg upgradeItemCfg)
+        private void AddItem(UpgradeItemCfg upgradeItemCfg,bool isHave)
         {
+            if (isHave) return;
             if (placeUpgradesTransform.TryGetValue(upgradeItemCfg.PlaceOfUpgrade,out Image image))
             {
                 image.enabled = true;

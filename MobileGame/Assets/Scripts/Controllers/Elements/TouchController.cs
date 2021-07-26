@@ -45,10 +45,8 @@ namespace MobileGame
             else _controlM.isJump.Value = false;
         }
 
-        private void UpdateControlPosition(Vector3 currentPosition)
-        {
-            _controlM.control.Value = (currentPosition - _startPosition).normalized;
-        }
+        private void UpdateControlPosition(Vector3 currentPosition) =>
+            _controlM.control.Value = (currentPosition - _startPosition).normalized;        
     }
 
 }

@@ -6,11 +6,11 @@ namespace MobileGame
 {
     public interface IInteractive
     {
-        public (int scores, bool isDead) Attack(PackInteractiveData data);
-        public event Action<bool> evtAnyCollision;
-        public event Action<IInteractive, bool> evtCollision;
-        public event Func<PackInteractiveData, (int, bool)> evtAttack;
-        public event Action<Collider2D, bool> evtTrigger;
-        internal void Kill();
+        (int scores, bool isDead) Attack(PackInteractiveData data);
+        event Action<bool> evtAnyCollision;
+        event Action<IInteractive, bool> evtCollision;
+        event Func<PackInteractiveData, (int, bool)> evtAttack;
+        event Action<Collider2D, bool> evtTrigger;
+        void Kill();
     }
 }

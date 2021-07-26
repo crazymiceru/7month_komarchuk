@@ -2,7 +2,7 @@
 
 namespace MobileGame
 {
-    public sealed class DataTrails
+    public struct DataTrails
     {
         public Transform transform;
         public TrailRenderer renderer;
