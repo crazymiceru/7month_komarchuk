@@ -7,5 +7,6 @@ namespace MobileGame
         None = 0,
         Player = 1,
         UpgradeItem=2,
+        EffectsItem=3
     }
 }

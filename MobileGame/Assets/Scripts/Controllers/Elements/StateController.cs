@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using UnityEngine;
 
 namespace MobileGame
 {
@@ -9,19 +8,27 @@ namespace MobileGame
         private StateMachineCfg _stateMachineCfg;
         private iReadOnlySubscriptionField<Commands> _command;
         private SubscriptionField<TypeAnimation> _typeAnimation;
+        
 
         internal StateController(iReadOnlySubscriptionField<Commands> command,SubscriptionField<TypeAnimation> typeAnimation,  StateMachineCfg stateMachineCfg)
         {
             _command = command;
             _typeAnimation = typeAnimation;
             _stateMachineCfg = stateMachineCfg;
-            command.Subscribe(GetCommand);
+            _command.Subscribe(GetCommand);
+        }
+
+        protected override void OnDispose()
+        {
+            _command.UnSubscribe(GetCommand);
         }
 
         public void GetCommand(Commands command)
         {
-
-            var targetAnimation = _stateMachineCfg.StateData.Where(x => x.command == command && (x.CurrentAnimation == TypeAnimation.Any || x.CurrentAnimation == _typeAnimation.Value)).Select(x => x.TargetAnimation).FirstOrDefault();
+            var targetAnimation = _stateMachineCfg.StateData.
+                Where(x => x.command == command &&
+                (x.CurrentAnimation == TypeAnimation.Any || x.CurrentAnimation == _typeAnimation.Value))
+                .Select(x => x.TargetAnimation).FirstOrDefault();
 
             if (targetAnimation != TypeAnimation.Any)
             {

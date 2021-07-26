@@ -8,7 +8,7 @@ namespace MobileGame
         private ControlLeak _controlLeak = new ControlLeak("GameBuild");
         private GameM _gameM;
 
-        internal GameController() : base()
+        internal GameController()
         {
             var unityAds = GameObject.FindObjectOfType<UnityAds>();
             if (unityAds == null) Debug.LogWarning($"UnityAds dont find on the scene");
@@ -17,6 +17,11 @@ namespace MobileGame
             _gameM = new GameM(unityAds);
             _gameM.gameState.Subscribe(ChangeStateGame);
             _gameM.gameState.Value = GameState.menu;
+        }
+
+        protected override void OnDispose()
+        {
+            _gameM.gameState.UnSubscribe(ChangeStateGame);
         }
 
         private void ChangeStateGame(GameState gameState)
@@ -59,8 +64,8 @@ namespace MobileGame
             skyTransform= go.gameObject.transform.GetComponentInChildren<TagSky>().gameObject.transform;
             if (playerTransform != null && skyTransform != null)
             {
-                AddController(new ParallaxController(skyTransform, playerTransform, new Vector2(0.4f, 1), new Vector2(32, 0)));
-                AddController(new ParallaxController(Reference.MainCamera.transform, playerTransform, new Vector2(0f, 1f), new Vector2(0, 0)));
+                AddController(new ParallaxController(skyTransform, playerTransform, LoadResources.GetValue<ParalaxCfg>("Any/ParalaxBackground")));
+                AddController(new ParallaxController(Reference.MainCamera.transform, playerTransform, LoadResources.GetValue<ParalaxCfg>("Any/ParalaxCamera")));
             }
             AddController(new ActivateMazeElementsController(go.gameObject.transform));
         }

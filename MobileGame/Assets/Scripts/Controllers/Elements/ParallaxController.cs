@@ -12,14 +12,14 @@ namespace MobileGame
         private Vector2 _repeat;
         private Vector3 _offset;
 
-        internal ParallaxController(Transform transform, Transform targetTransform, Vector2 coefficient, Vector2 repeat)
+        internal ParallaxController(Transform transform, Transform targetTransform, ParalaxCfg paralaxCfg)
         {
-            _coefficient = coefficient;
+            _coefficient = paralaxCfg.Coefficient;
             _transform = transform;
             _targetTransform = targetTransform;
             _startTargetPos = _targetTransform.position;
             _offset = _targetTransform.position - _transform.position;
-            _repeat = repeat;
+            _repeat = paralaxCfg.SizeLoopBackground;
         }
 
         public void LateExecute()

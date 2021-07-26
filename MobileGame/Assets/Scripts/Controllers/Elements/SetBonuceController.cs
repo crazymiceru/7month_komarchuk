@@ -11,15 +11,15 @@ namespace MobileGame
         private Button _button;
         private GameM _gameM;
 
-        internal SetBonuceController(GameM gameM) : base()
+        internal SetBonuceController(GameM gameM)
         {
             var data = CreateGameObject(Reference.Canvas, _nameResButton);
             _button = data.gameObject.GetComponent<Button>();
-            _button.onClick.AddListener(Click);
+            _button.onClick.AddListener(Activate);
             _gameM = gameM;
         }
 
-        private void Click()
+        private void Activate()
         {
             _button.gameObject.SetActive(false);
             _gameM.ADS.ShowVideoReward(EndVideo);

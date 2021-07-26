@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MobileGame
 {
-    [CreateAssetMenu(menuName = "My/ItemsArray", fileName = "Items")]
+    [CreateAssetMenu(menuName = "My/Items/ItemsArray", fileName = "Items")]
     public class ItemsArray : ScriptableObject
     {
         [SerializeField] private List<ItemCfg> _itemCfg;
@@ -12,7 +12,6 @@ namespace MobileGame
         public void AddItems()
         {
             _itemCfg.Add(null);
-
         }
         public void DeleteItems(int i)
         {

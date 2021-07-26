@@ -4,13 +4,18 @@ namespace MobileGame
 {
     internal sealed class UnitController : ControllerBasic, IInitialization
     {
+        #region Fields
+
         ControlLeak _controlLeak = new ControlLeak("UnitController");
         private UnitM _unit;
         private DataUnit _unitData;
         private IInteractive _iInteractive;
         private GameObject _gameObject;
         private SubscriptionField<int> _scores;
-  
+
+        #endregion
+
+
         #region Init
 
         internal UnitController(UnitM unit, SubscriptionField<int> scores , IInteractive iInteractive, TypeUnit typeItem, DataUnit unitData)
@@ -48,7 +53,6 @@ namespace MobileGame
                 GameObject.Destroy(go, _unitData.TimeViewDestroyEffects);
             }
         }
-
 
         private (int, bool) Attack(PackInteractiveData pack)
         {

@@ -15,7 +15,7 @@ namespace MobileGame
                 var t = item.GetTypeItem();
                 //Debug.Log($"GameObject:{(item as MonoBehaviour).name}");
                 AddController(
-                    Utils.ParseType(t.type).SetNumCfg(t.cfg).SetGameObject((item as MonoBehaviour).gameObject).CreateControllers()
+                    UtilsUnit.ParseType(t.type).SetNumCfg(t.cfg).SetGameObject((item as MonoBehaviour).gameObject).CreateControllers()
                     );
 
             }

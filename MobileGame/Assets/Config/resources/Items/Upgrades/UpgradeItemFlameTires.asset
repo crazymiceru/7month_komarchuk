@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15020aef885b72348a13ce29f0b7c894, type: 3}
-  m_Name: UpgradeItemSpeedTires
+  m_Name: UpgradeItemFlameTires
   m_EditorClassIdentifier: 
-  _id: 2
-  _titleName: SpeedTires
+  _id: 1
+  _titleName: FlameTires
   _placeofUpgrade: {fileID: 11400000, guid: 3c23ef26f33a68e438fb7cd5515f2cb6, type: 2}
-  _sprite: {fileID: 21300000, guid: c483d9e236abe0e4db447725baffdc39, type: 3}
-  _typeUpgrade: 1
-  _value: 5
+  _sprite: {fileID: 21300000, guid: df57c3ed91c2c52448509a60e19fad94, type: 3}
+  _typeModification: 2
+  _value: 200

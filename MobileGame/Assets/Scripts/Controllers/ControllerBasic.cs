@@ -12,7 +12,7 @@ namespace MobileGame
 
         protected List<GameObjectData> _gameObjects=new List<GameObjectData>();
         protected int _numCfg = 0;        
-        protected List<IController> _iControllers;
+        protected List<IController> _iControllers=new List<IController>();
         protected List<string> DataNames = new List<string>();
         private bool isDispose;
 
@@ -31,12 +31,6 @@ namespace MobileGame
             return $"Objects:{sb}";
         }
 
-        internal ControllerBasic()
-        {
-            _iControllers = new List<IController>();
-            AddDataName();
-        }
-
         public ControllerBasic SetNumCfg(int numCfg)
         {
             _numCfg = numCfg;
@@ -44,19 +38,10 @@ namespace MobileGame
             return this;
         }
 
-        private GameObjectData CreateUnitBasic(string nameRes)
-        {
-            var data = new GameObjectData();
-            nameRes = nameRes.Replace("##", $"{_numCfg}");
-            data.prefabGameObject = LoadResources.GetValue<GameObject>($"{nameRes}");
-            return data;
-        }
-
-        protected IController AddController(IController controller)
+        protected void AddController(IController controller)
         {
             _iControllers.Add(controller);
             ListControllers.Add(controller);
-            return controller;
         }
 
         private void GetInfoGameObject(GameObjectData data)
@@ -74,10 +59,62 @@ namespace MobileGame
             }
         }
 
+        protected virtual void AddDataName()
+        {
+            DataNames.Clear();
+        }
+
+        public IEnumerable<string> GetDataName()
+        {
+            for (int i = 0; i < DataNames.Count; i++)
+            {
+                yield return DataNames[i];
+            }
+        }
+
+        public GameObjectData this[int index]
+        {
+            get => _gameObjects[index];
+        }
+
+        public void Dispose()
+        {
+            OnDispose();
+            Clear();
+        }
+
+        protected void Clear()
+        {
+            for (int i = 0; i < _iControllers.Count; i++)
+            {
+                ListControllers.Delete(_iControllers[i]);
+                if (_iControllers[i] is IDisposable) (_iControllers[i] as IDisposable).Dispose();
+            }
+            _iControllers.Clear();
+
+            for (int i = 0; i < _gameObjects.Count; i++)
+            {
+                Object.Destroy(_gameObjects[i].gameObject);
+            }
+            _gameObjects.Clear();
+        }
+
+        protected virtual void OnDispose()
+        {
+        }
+
         #endregion
 
 
         #region Builds
+
+        private GameObjectData CreateUnitBasic(string nameRes)
+        {
+            var data = new GameObjectData();
+            nameRes = nameRes.Replace("##", $"{_numCfg}");
+            data.prefabGameObject = LoadResources.GetValue<GameObject>($"{nameRes}");
+            return data;
+        }
 
         protected GameObjectData CreateGameObjectPool(Transform folder, string nameRes)
         {
@@ -125,56 +162,12 @@ namespace MobileGame
             return this;
         }
 
-        protected virtual void AddDataName()
-        {
-            DataNames.Clear();
-        }
-
-        public IEnumerable<string> GetDataName()
-        {
-            for (int i = 0; i < DataNames.Count; i++)
-            {
-                yield return DataNames[i];
-            }
-        }
-
-        public GameObjectData this[int index]
-        {
-            get=> _gameObjects[index];
-        }
-
-public void Dispose()
-        {
-            OnDispose();
-            Clear();
-        }
-
-        protected void Clear()
-        {
-            for (int i = 0; i < _iControllers.Count; i++)
-            {
-                ListControllers.Delete(_iControllers[i]);
-                if (_iControllers[i] is IDisposable) (_iControllers[i] as IDisposable).Dispose();
-            }
-
-            _iControllers.Clear();
-            for (int i = 0; i < _gameObjects.Count; i++)
-            {
-                Object.Destroy(_gameObjects[i].gameObject);
-            }
-            _gameObjects.Clear();
-        }
-
-        protected virtual void OnDispose()
-        {
-
-        }
-
         internal virtual ControllerBasic CreateControllers()
         {
             return this;
         }
 
         #endregion
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace MobileGame
 {
-    public enum TypeUpgrade
+    public enum TypeModification
     {
         none = 0,
         speed = 1,

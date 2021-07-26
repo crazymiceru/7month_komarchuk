@@ -9,9 +9,11 @@ namespace MobileGame
 
         #region Variables
 
+        [SerializeField] private TypeUnit _typeItem;
+        [SerializeField] private int _numCfg = 0;
+
         public event Action<Collider2D, bool> evtTrigger = delegate { };
         public event Action<IInteractive, bool> evtCollision = delegate { };
-        private List<Func<PackInteractiveData, (int,bool)>> _evtAttack = new List<Func<PackInteractiveData, (int,bool)>>();
         public event Action<bool> evtAnyCollision = delegate { };
 
         public Transform objectTransform => _objectTransform;
@@ -21,12 +23,11 @@ namespace MobileGame
         public SpriteRenderer objectSpriteRednderer => _objectSpriteRednderer;
         private SpriteRenderer _objectSpriteRednderer;
 
-        [SerializeField] private TypeUnit _typeItem;
-        [SerializeField] private int _numCfg = 0;
         private PoolInstatiate _poolInstatiate;
         private bool _isPool;
-
         private Dictionary<int, int> _listCollisionEnter = new Dictionary<int, int>();
+
+        private List<Func<PackInteractiveData, (int, bool)>> _evtAttack = new List<Func<PackInteractiveData, (int, bool)>>();
 
         event Func<PackInteractiveData, (int, bool)> IInteractive.evtAttack
         {
@@ -48,11 +49,6 @@ namespace MobileGame
         }
 
         private void Awake()
-        {
-            GetComponents();
-        }
-
-        private void GetComponents()
         {
             _objectTransform = transform;
             _objectRigidbody2D = GetComponent<Rigidbody2D>();
@@ -92,7 +88,7 @@ namespace MobileGame
         #endregion
 
 
-        #region Collision
+        #region Interaction
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
@@ -123,9 +119,6 @@ namespace MobileGame
                 evtTrigger.Invoke(other,false);
         }
 
-        #endregion
-
-
         public (int,bool) Attack(PackInteractiveData data)
         {
             int addScores = 0;
@@ -138,5 +131,7 @@ namespace MobileGame
             }
             return (addScores,isDead);
         }
+
+        #endregion
     }
 }
