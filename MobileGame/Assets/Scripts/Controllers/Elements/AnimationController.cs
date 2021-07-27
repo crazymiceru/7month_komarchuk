@@ -12,6 +12,7 @@ namespace MobileGame
         private float _currentFrame;
         private bool _isStop;
         private iReadOnlySubscriptionField<TypeAnimation> _typeAnimation;
+        private bool isMirrored;
 
         internal AnimationController(iReadOnlySubscriptionField<TypeAnimation> typeAnimation, IUnitView unitView, AnimationCfg animationCfg)
         {
@@ -19,7 +20,6 @@ namespace MobileGame
             _unitView = unitView;
             _typeAnimation.Subscribe(SetAnimation);
             _animationCfg = animationCfg;
-
         }
 
         protected override void OnDispose()
@@ -45,6 +45,32 @@ namespace MobileGame
         public void Execute(float deltaTime)
         {
             Animation(deltaTime);
+            SetMirror();
+        }
+
+        private void SetMirror()
+        {
+            if (_animationCfg.IsMirror)
+            {
+                if (_unitView.objectRigidbody2D.velocity.x < 0 && !isMirrored)
+                {
+                    isMirrored = true;
+                    _unitView.objectTransform.localScale = new Vector3(
+                        -_unitView.objectTransform.localScale.x,
+                        _unitView.objectTransform.localScale.y,
+                        _unitView.objectTransform.localScale.z
+                        );
+                }
+                if (_unitView.objectRigidbody2D.velocity.x > 0 && isMirrored)
+                {
+                    isMirrored = false;
+                    _unitView.objectTransform.localScale = new Vector3(
+                        -_unitView.objectTransform.localScale.x,
+                        _unitView.objectTransform.localScale.y,
+                        _unitView.objectTransform.localScale.z
+                        );
+                }
+            }
         }
 
         private void Animation(float deltaTime)

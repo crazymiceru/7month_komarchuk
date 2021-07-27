@@ -7,6 +7,8 @@ namespace MobileGame
     {
         private ControlLeak _controlLeak = new ControlLeak("GameBuild");
         private GameM _gameM;
+        private UnitM _playerM;
+        private IUnitView _playerView;
 
         internal GameController()
         {
@@ -14,6 +16,7 @@ namespace MobileGame
             if (unityAds == null) Debug.LogWarning($"UnityAds dont find on the scene");
             Advertisement.AddListener(unityAds);
 
+            _playerM = new UnitM();
             _gameM = new GameM(unityAds);
             _gameM.gameState.Subscribe(ChangeStateGame);
             _gameM.gameState.Value = GameState.menu;
@@ -55,19 +58,20 @@ namespace MobileGame
             Transform skyTransform;
             Clear();
             _gameM.Analitics.SendMessage("Start Game");
-            var player = new PlayerBuild().Create(_gameM);
+            var player = new PlayerBuild().Create(_gameM, _playerM);
+            _playerView = player[0].iUnitView;
             AddController(player);
             playerTransform = player[0].gameObject.transform;
-            var sceneController = new SceneController(1); 
+            var sceneController = new SceneController(1);
             AddController(sceneController);
-            var go = sceneController[0];
-            skyTransform= go.gameObject.transform.GetComponentInChildren<TagSky>().gameObject.transform;
+            var dataScene = sceneController[0];
+            skyTransform = dataScene.gameObject.transform.GetComponentInChildren<TagSky>().gameObject.transform;
             if (playerTransform != null && skyTransform != null)
             {
                 AddController(new ParallaxController(skyTransform, playerTransform, LoadResources.GetValue<ParalaxCfg>("Any/ParalaxBackground")));
                 AddController(new ParallaxController(Reference.MainCamera.transform, playerTransform, LoadResources.GetValue<ParalaxCfg>("Any/ParalaxCamera")));
             }
-            AddController(new ActivateMazeElementsController(go.gameObject.transform));
+            AddController(new ActivateMazeElementsController(dataScene.gameObject.transform, _playerM, _playerView));
         }
     }
 }

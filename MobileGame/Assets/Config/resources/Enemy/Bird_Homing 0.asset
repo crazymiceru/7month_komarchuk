@@ -9,15 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cefaf1007a0896499251ae2828591d1, type: 3}
-  m_Name: Player_Data 0
+  m_Script: {fileID: 11500000, guid: ee02b2c26c7c95b48a395ad21587b145, type: 3}
+  m_Name: Bird_Homing 0
   m_EditorClassIdentifier: 
-  _powerMove: 2800
-  _powerJump: 300
-  _minSqrLenghthTraectory: 0.2
-  _maxSpeed: 4
-  _maxLive: 5
-  _destroyEffects: {fileID: 0}
-  _timeViewDestroyEffects: 10
-  _attackPower: 1
-  _addScores: 0
+  _isHomingCondition: 1
+  _minDistanceHoming: 10
+  _powerMove: 20
