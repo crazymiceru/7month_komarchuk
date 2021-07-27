@@ -8,6 +8,8 @@ namespace MobileGame
     {
         public float Speed => _speed;
         [SerializeField] private float _speed=10;
+        public bool IsMirror => _isMirror;
+        [SerializeField] private bool _isMirror;
         public AnimationData[] animationData => _animationData;
         [SerializeField] private AnimationData[] _animationData;
     }

@@ -12,6 +12,7 @@ namespace MobileGame
                 TypeUnit.Player => new PlayerBuild(),
                 TypeUnit.UpgradeItem => new UpgradeItemBuild(),
                 TypeUnit.EffectsItem => new EffectsItemBuild(),
+                TypeUnit.EnemyBird => new EnemyBirdBuild(),
                 TypeUnit.None => new EmptyBuild(),
                 _ => new EmptyBuild(),
 

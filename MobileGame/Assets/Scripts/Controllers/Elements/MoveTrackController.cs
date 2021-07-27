@@ -6,14 +6,14 @@ namespace MobileGame
     {
         ITraectory _iTraectory;
         private int _numTraectory;
-        private ControlLeak _controlLeak = new ControlLeak("MoveTrack");        
+        private ControlLeak _controlLeak = new ControlLeak("MoveTrackController");        
         private DataUnit _dataUnit;
-        private ControlM _controlM;
+        private SubscriptionField<Vector2> _control;
         private IUnitView _iUnitView;
 
-        internal MoveTrackController(ControlM controlM,  ITraectory iTraectory,IUnitView iUnitView, DataUnit dataUnit)
+        internal MoveTrackController(SubscriptionField<Vector2> control,  ITraectory iTraectory,IUnitView iUnitView, DataUnit dataUnit)
         {
-            _controlM = controlM;
+            _control = control;
             _iTraectory = iTraectory;
             _iUnitView = iUnitView;
             _dataUnit = dataUnit;
@@ -43,7 +43,7 @@ namespace MobileGame
                     if (_numTraectory == _iTraectory.Track.Length) _numTraectory = 0;
                     //Debug.Log($"Next Traectory {_unitView.Track[_numTraectory].transform.gameObject.name}");
                 }
-                _controlM.control.Value = control;
+                _control.Value = control;
             }
         }
     }

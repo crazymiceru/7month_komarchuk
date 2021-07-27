@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 914975f201565d94487552afbca400c1, type: 3}
+  m_Name: Bird_Animation 0
+  m_EditorClassIdentifier: 
+  _speed: 10
+  _isMirror: 1
+  _animationData:
+  - _isLoop: 1
+    _typeAnimation: 1
+    _sprites:
+    - {fileID: 8051579698515443948, guid: a9c136f9dcfd3954fa0f3fab6260607f, type: 3}
+    - {fileID: 5775143000185782248, guid: a9c136f9dcfd3954fa0f3fab6260607f, type: 3}
