@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "726321190479",
+    "firebase_url": "https://mobilegame-8aceb-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "mobilegame-8aceb",
+    "storage_bucket": "mobilegame-8aceb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:726321190479:android:5e889500fbdc60d3fa7c3a",
+        "android_client_info": {
+          "package_name": "com.Crazymice.MobileGame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "726321190479-l0fv00vv2lvql613537gd68ffjm6v2e5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOsd7eDvXn9sjsG81C_kvASxtTvWjCT4o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "726321190479-l0fv00vv2lvql613537gd68ffjm6v2e5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

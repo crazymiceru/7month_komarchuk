@@ -9,9 +9,9 @@ namespace MobileGame
         private const string _nameResButton = "BonusButton";
         private const string _nameResShow = "BonusShow";
         private Button _button;
-        private GameM _gameM;
+        private GameModel _gameM;
 
-        internal SetBonuceController(GameM gameM)
+        internal SetBonuceController(GameModel gameM)
         {
             var data = CreateGameObject(Reference.Canvas, _nameResButton);
             _button = data.gameObject.GetComponent<Button>();

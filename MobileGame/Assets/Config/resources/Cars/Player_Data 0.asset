@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Player_Data 0
   m_EditorClassIdentifier: 
   _powerMove: 2800
-  _powerJump: 300
+  _powerJump: 500
   _minSqrLenghthTraectory: 0.2
   _maxSpeed: 4
   _maxLive: 5

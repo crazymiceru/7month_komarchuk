@@ -80,7 +80,7 @@ namespace MobileGame
             if (resultGameObject.TryGetComponent(out IPool pool))
             {
                 pool.SetPoolDestroy();
-                pool.ClearEvt();
+                pool.ClearPool();
             }
             else Debug.LogWarning($"Dont find component IPool in object: {resultGameObject.name}");
 

@@ -40,7 +40,7 @@ namespace MobileGame
 
         #region Init
 
-        public void ClearEvt()
+        public void ClearPool()
         {
             evtTrigger = delegate { };
             evtCollision= delegate { };
@@ -111,12 +111,12 @@ namespace MobileGame
 
         private void OnTriggerEnter2D(Collider2D other)
         {                           
-                evtTrigger.Invoke(other,true);
+            evtTrigger.Invoke(other,true);
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-                evtTrigger.Invoke(other,false);
+            evtTrigger.Invoke(other,false);
         }
 
         public (int,bool) Attack(PackInteractiveData data)

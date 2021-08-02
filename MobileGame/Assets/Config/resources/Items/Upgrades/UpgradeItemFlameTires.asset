@@ -17,4 +17,4 @@ MonoBehaviour:
   _placeofUpgrade: {fileID: 11400000, guid: 3c23ef26f33a68e438fb7cd5515f2cb6, type: 2}
   _sprite: {fileID: 21300000, guid: df57c3ed91c2c52448509a60e19fad94, type: 3}
   _typeModification: 2
-  _value: 200
+  _value: 100

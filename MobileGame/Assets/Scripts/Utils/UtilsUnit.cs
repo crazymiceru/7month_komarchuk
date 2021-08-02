@@ -12,14 +12,16 @@ namespace MobileGame
                 TypeUnit.Player => new PlayerBuild(),
                 TypeUnit.UpgradeItem => new UpgradeItemBuild(),
                 TypeUnit.EffectsItem => new EffectsItemBuild(),
+                TypeUnit.Obstacles => new ObstaclesBuild(),
                 TypeUnit.EnemyBird => new EnemyBirdBuild(),
                 TypeUnit.None => new EmptyBuild(),
                 _ => new EmptyBuild(),
 
             };
         }
-        public static void DecompositeItems(ItemsArray itemsArray, Dictionary<int, ItemCfg> itemsArrayOut)
+        public static Dictionary<int, ItemCfg> DecompositeItems(ItemsArray itemsArray)
         {
+            var itemsArrayOut = new Dictionary<int, ItemCfg>();
             for (int i = 0; i < itemsArray.ItemCfg.Count; i++)
             {
                 ItemCfg item = itemsArray.ItemCfg[i];
@@ -29,6 +31,7 @@ namespace MobileGame
                 }
                 else Debug.LogWarning($"Double Id of elements {item}:{itemsArrayOut[item.Id]}");
             }
+            return itemsArrayOut;
         }
     }
 }

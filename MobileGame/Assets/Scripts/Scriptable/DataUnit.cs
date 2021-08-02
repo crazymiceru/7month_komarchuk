@@ -2,7 +2,7 @@
 
 namespace MobileGame
 {
-    [CreateAssetMenu(menuName = "My/DataUnit")]
+    [CreateAssetMenu(menuName = "My/DataUnit",fileName ="Unit_Data 0")]
     public sealed class DataUnit : ScriptableObject
     {
         [Header("Move")]

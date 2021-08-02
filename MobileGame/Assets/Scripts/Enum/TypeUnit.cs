@@ -8,7 +8,7 @@ namespace MobileGame
         Player = 1,
         UpgradeItem=2,
         EffectsItem=3,
-        EnemyBird=100,
-
+        Obstacles = 4,
+        EnemyBird = 100,
     }
 }

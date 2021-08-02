@@ -17,4 +17,4 @@ MonoBehaviour:
   _sprite: {fileID: -49130668184793455, guid: 907a19a0cc99bf04288d3b0c0d6afcfb, type: 3}
   _typeModification: 1
   _value: -4
-  _time: 5
+  _time: 10
