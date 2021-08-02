@@ -3,6 +3,6 @@
     internal interface IPool
     {
         void SetPoolDestroy();
-        void ClearEvt();
+        void ClearPool();
     }
 }

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d76bf5846923424992f6d3382e8fd00, type: 3}
+  m_Name: DailyRewardsArray
+  m_EditorClassIdentifier: 
+  _itemCfg:
+  - {fileID: 11400000, guid: 4974fa874a8161b43bf971d07b2effe1, type: 2}
+  - {fileID: 11400000, guid: b6222e7aeb4c5b54db31629cf7ce67ed, type: 2}
+  - {fileID: 11400000, guid: d02b2ee61c038a24e890eb906335f3c4, type: 2}
+  - {fileID: 11400000, guid: a497e9d5cf2a96f4f9818e412c3585c9, type: 2}
+  - {fileID: 11400000, guid: 4974fa874a8161b43bf971d07b2effe1, type: 2}
+  - {fileID: 11400000, guid: b6222e7aeb4c5b54db31629cf7ce67ed, type: 2}
+  - {fileID: 11400000, guid: d02b2ee61c038a24e890eb906335f3c4, type: 2}
+  - {fileID: 11400000, guid: a497e9d5cf2a96f4f9818e412c3585c9, type: 2}
+  - {fileID: 11400000, guid: 3b83fd750b1f9104480e6c1967adc426, type: 2}
+  - {fileID: 11400000, guid: 932277725cedc2c4692d42eb71fc19c7, type: 2}
+  - {fileID: 11400000, guid: d02b2ee61c038a24e890eb906335f3c4, type: 2}
+  - {fileID: 11400000, guid: a497e9d5cf2a96f4f9818e412c3585c9, type: 2}
+  - {fileID: 11400000, guid: 3b83fd750b1f9104480e6c1967adc426, type: 2}
+  - {fileID: 11400000, guid: 932277725cedc2c4692d42eb71fc19c7, type: 2}

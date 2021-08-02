@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Bird_Homing 0
   m_EditorClassIdentifier: 
   _isHomingCondition: 1
-  _minDistanceHoming: 10
+  _minDistanceHoming: 5
   _powerMove: 20

@@ -7,7 +7,8 @@ namespace MobileGame
         menu=0,
         startLevel=1,
         gameOver=2,
-        winGame=3
+        winGame=3,
+        dailyRewards=4
     }
 
 }

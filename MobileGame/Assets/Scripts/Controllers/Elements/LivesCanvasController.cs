@@ -6,13 +6,13 @@ namespace MobileGame
     internal sealed class LivesCanvasController : IController
     {
         private ControlLeak _controlLeak = new ControlLeak("LivesCanvasController");
-        private UnitM _unit;
+        private UnitModel _unit;
         private Transform _position;
         private List<GameObject> _livesIco=new List<GameObject>();
         private GameObject _prefabFlagIco;
         private float _widthIco = 25f;
 
-        internal LivesCanvasController(UnitM unit)
+        internal LivesCanvasController(UnitModel unit)
         {
             _unit = unit;
             _unit.evtLives += UpdateLives;

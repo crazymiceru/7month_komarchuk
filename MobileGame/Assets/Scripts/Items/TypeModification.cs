@@ -6,6 +6,6 @@
         speed = 1,
         jump = 2,
         setSize = 3,
-
+        shield = 4,
     }
 }

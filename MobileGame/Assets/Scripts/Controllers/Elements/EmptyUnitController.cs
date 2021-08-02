@@ -3,10 +3,10 @@
     internal sealed class EmptyUnitController : ControllerBasic
     {
         private ControlLeak _controlLeak = new ControlLeak("");
-        private UnitM _unit;
+        private UnitModel _unit;
         private IUnitView _iUnitView;
 
-        internal EmptyUnitController(UnitM unit, IUnitView iUnitView)
+        internal EmptyUnitController(UnitModel unit, IUnitView iUnitView)
         {
             _unit = unit;
             _iUnitView = iUnitView;

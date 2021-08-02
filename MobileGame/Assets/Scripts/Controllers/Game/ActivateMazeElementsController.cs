@@ -7,7 +7,7 @@ namespace MobileGame
     {
         private ControlLeak _controlLeak = new ControlLeak("ActivateMazeElementsController");        
 
-        internal ActivateMazeElementsController(Transform findFolder,UnitM unitMPlayer,IUnitView playerView) 
+        internal ActivateMazeElementsController(Transform findFolder,UnitModel unitMPlayer,IUnitView playerView) 
         {
             ControllerBasic controller;
             var objects=findFolder.GetComponentsInChildren<MonoBehaviour>().OfType<IUnitView>();
@@ -26,6 +26,11 @@ namespace MobileGame
                             .SetGameObject((item as MonoBehaviour).gameObject)
                             .CreateControllers());
                         break;
+                    case TypeUnit.Obstacles:
+                        AddController(new ObstaclesBuild().SetNumCfg(type.cfg)
+                            .SetGameObject((item as MonoBehaviour).gameObject)
+                            .CreateControllers());
+                        break;
                     case TypeUnit.EnemyBird:
                         AddController( controller = new EnemyBirdBuild().SetNumCfg(type.cfg)
                             .SetGameObject((item as MonoBehaviour).gameObject));
@@ -35,10 +40,10 @@ namespace MobileGame
 
 
                 //Debug.Log($"GameObject:{(item as MonoBehaviour).name}");
-                AddController(
-                    UtilsUnit.ParseType(type.type).SetNumCfg(type.cfg)
-                    .SetGameObject((item as MonoBehaviour).gameObject).CreateControllers()
-                    );
+                //AddController(
+                //    UtilsUnit.ParseType(type.type).SetNumCfg(type.cfg)
+                //    .SetGameObject((item as MonoBehaviour).gameObject).CreateControllers()
+                //    );
 
             }
 

@@ -31,14 +31,13 @@ namespace MobileGame
 
         public void Execute(float deltaTime)
         {
-            if (_isHoming)
+            if (!_isHoming && _homingCfg.IsHomingCondition) return;
+
+            var homeVector = _playerView.objectTransform.position - _iUnitView.objectTransform.position;
+            if (homeVector.sqrMagnitude < _homingCfg.MinDistanceHoming * _homingCfg.MinDistanceHoming)
             {
-                var distance = _playerView.objectTransform.position - _iUnitView.objectTransform.position;
-                if (distance.sqrMagnitude < _homingCfg.MinDistanceHoming)
-                {
-                    _control.Value = distance.normalized
-                        * _homingCfg.PowerMove;
-                }
+                _control.Value = homeVector.normalized
+                    * _homingCfg.PowerMove;
             }
         }
 
@@ -46,7 +45,6 @@ namespace MobileGame
         {
             if (_maxSpeed.Value > maxSpeedValue)
             {
-                Debug.Log($"Is Homing");
                 _isHoming = true;
             }
             else _isHoming = false;
