@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 5004902575640111627}
   - component: {fileID: 881018471517875281}
   - component: {fileID: 2960024534319894202}
-  - component: {fileID: 5944507144131628090}
+  - component: {fileID: 3246934946937432367}
   m_Layer: 5
   m_Name: Close
   m_TagString: Untagged
@@ -86,7 +86,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4446668087841310855}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5944507144131628090
+--- !u!114 &3246934946937432367
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4446668087841310855}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: c62056f7390e11049ba3917d0cccee81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -180,6 +180,28 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+  _typeAnimationData:
+  - typeTransitionButton: 4
+    typeAnimation: 3
+    ease: 0
+    value: 360
+    duration: 2
+    isLoop: 1
+    isClearPosition: 1
+  - typeTransitionButton: 2
+    typeAnimation: 1
+    ease: 0
+    value: 5
+    duration: 1
+    isLoop: 0
+    isClearPosition: 1
+  - typeTransitionButton: 1
+    typeAnimation: 2
+    ease: 1
+    value: 0.7
+    duration: 0.3
+    isLoop: 0
+    isClearPosition: 1
 --- !u!1 &5430734542762922543
 GameObject:
   m_ObjectHideFlags: 0

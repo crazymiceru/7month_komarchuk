@@ -9,7 +9,8 @@ namespace MobileGame
     public class RewardView : MonoBehaviour
     {
         [SerializeField] private Button button;
-        [SerializeField] private Image image;        
+        [SerializeField] private Image image;
+        [SerializeField] private GameObject active;
         [SerializeField] private GameObject off;
         [SerializeField] private TMP_Text count;
 
@@ -22,7 +23,7 @@ namespace MobileGame
 
         public void InitialisationUpdate(bool isEnable, bool isActive, UnityAction buttonAction = null)
         {
-            button.gameObject.SetActive(isActive);
+            active.SetActive(isActive);
             off.SetActive(!isEnable);
             button.onClick.RemoveAllListeners();
             if (buttonAction != null)

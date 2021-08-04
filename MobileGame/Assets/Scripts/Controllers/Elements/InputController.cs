@@ -27,8 +27,8 @@ namespace MobileGame
                 _controlM.positionCursor.Value = Reference.MainCamera.ScreenToWorldPoint(Input.mousePosition);
             }
 
-                _controlM.control.Value = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-            
+            var currentControlValue = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            if (currentControlValue != _controlM.control.Value) _controlM.control.Value = currentControlValue;
             _controlM.isJump.Value = Input.GetButtonDown("Jump");
         }
     }

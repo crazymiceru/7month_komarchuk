@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1894608196700695580}
   - component: {fileID: 1894608196700695583}
   - component: {fileID: 1894608196700695582}
-  - component: {fileID: 1894608196700695581}
   - component: {fileID: 2541535457712907711}
+  - component: {fileID: 2544502489213416102}
   m_Layer: 5
   m_Name: Start Game
   m_TagString: Untagged
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1894608196700695581
+--- !u!114 &2541535457712907711
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,7 +86,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1894608196700695555}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 67f6b0d4a45cfee4cab7ebbe0de92688, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2544502489213416102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894608196700695555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c62056f7390e11049ba3917d0cccee81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -99,7 +111,7 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0, g: 1, b: 0.116532326, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
@@ -121,18 +133,28 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2541535457712907711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1894608196700695555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67f6b0d4a45cfee4cab7ebbe0de92688, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  _typeAnimationData:
+  - typeTransitionButton: 2
+    typeAnimation: 1
+    ease: 5
+    value: 3
+    duration: 1
+    isLoop: 0
+    isClearPosition: 0
+  - typeTransitionButton: 1
+    typeAnimation: 2
+    ease: 1
+    value: 0.7
+    duration: 0.1
+    isLoop: 0
+    isClearPosition: 0
+  - typeTransitionButton: 4
+    typeAnimation: 2
+    ease: 1
+    value: 1
+    duration: 0.1
+    isLoop: 0
+    isClearPosition: 0
 --- !u!1 &1894608196887859648
 GameObject:
   m_ObjectHideFlags: 0
