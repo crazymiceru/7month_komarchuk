@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ParalaxCamera
   m_EditorClassIdentifier: 
   _SizeLoopBackground: {x: 0, y: 0}
-  _coefficientParallaxBackground: {x: 0, y: 1}
+  _coefficientParallaxBackground: {x: 0, y: 0.25}

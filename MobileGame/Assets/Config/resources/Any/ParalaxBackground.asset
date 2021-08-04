@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d3f22e3def4b3458275ab56ed77e1e, type: 3}
   m_Name: ParalaxBackground
   m_EditorClassIdentifier: 
-  _SizeLoopBackground: {x: 32, y: 0}
-  _coefficientParallaxBackground: {x: 0.4, y: 1}
-  _coefficientParallaxBackgroundFly: {x: 0, y: 0}
+  _SizeLoopBackground: {x: 64, y: 0}
+  _coefficientParallaxBackground: {x: 0.4, y: 0.7}

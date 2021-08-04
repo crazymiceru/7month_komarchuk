@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cefaf1007a0896499251ae2828591d1, type: 3}
   m_Name: Player_Data 0
   m_EditorClassIdentifier: 
-  _powerMove: 2800
+  _powerMove: 1000
   _powerJump: 500
   _minSqrLenghthTraectory: 0.2
   _maxSpeed: 4
   _maxLive: 5
-  _destroyEffects: {fileID: 0}
+  _destroyEffects: {fileID: 8219497103021706204, guid: 5c0a85a05cee88948bba1b4c4584e046, type: 3}
   _timeViewDestroyEffects: 10
   _attackPower: 1
   _addScores: 0

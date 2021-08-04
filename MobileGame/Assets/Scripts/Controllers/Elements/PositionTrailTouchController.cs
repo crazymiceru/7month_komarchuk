@@ -12,12 +12,15 @@ namespace MobileGame
         private Transform _folder;
         private iReadOnlySubscriptionField<Vector2> _positionTouch;
         private iReadOnlySubscriptionField<bool> _isNewTouch;
+        private float _currentTimeTrail;
 
         internal PositionTrailTouchController(iReadOnlySubscriptionField<Vector2> positionTouch, iReadOnlySubscriptionField<bool> isNewTouch, GameObject trailObject, Transform folder)
         {
             _positionTouch = positionTouch;
             _isNewTouch = isNewTouch;
             _trails.Add(new DataTrails { transform = trailObject.transform, renderer = trailObject.GetComponent<TrailRenderer>() });
+            _currentTimeTrail = _trails[0].renderer.time;
+            _trails[0].renderer.time=0;
             _folder = folder;
         }
 
@@ -45,10 +48,12 @@ namespace MobileGame
                 }
                 if (!isFindTrail)
                 {
+                    Debug.Log($"New Trail");
                     var trailObject = Object.Instantiate(_trails[0].transform.gameObject, _folder);
                     _trails.Add(new DataTrails { transform = trailObject.transform, renderer = trailObject.GetComponent<TrailRenderer>() });
                     currentTrail = _trails.Count - 1;
                 }
+                _trails[currentTrail].renderer.time = _currentTimeTrail;
             }
 
             _trails[currentTrail].transform.position = _positionTouch.Value;
