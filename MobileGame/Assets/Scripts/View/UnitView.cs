@@ -21,7 +21,7 @@ namespace MobileGame
         public Rigidbody2D objectRigidbody2D => _objectRigidbody2D;
         private Rigidbody2D _objectRigidbody2D;
         public SpriteRenderer objectSpriteRednderer => _objectSpriteRednderer;
-        private SpriteRenderer _objectSpriteRednderer;
+        [SerializeField] private SpriteRenderer _objectSpriteRednderer;
 
         private PoolInstatiate _poolInstatiate;
         private bool _isPool;
@@ -50,10 +50,10 @@ namespace MobileGame
 
         private void Awake()
         {
-            _objectTransform = transform;
-            _objectRigidbody2D = GetComponent<Rigidbody2D>();
+            if (_objectTransform == null) _objectTransform = transform;
+            if (_objectRigidbody2D==null) _objectRigidbody2D = GetComponent<Rigidbody2D>();
             if (_objectRigidbody2D == null) Debug.LogWarning($"does not find the Rigidbody2D on the {gameObject.name} object ");
-            _objectSpriteRednderer = GetComponent<SpriteRenderer>();
+            if (_objectSpriteRednderer == null) _objectSpriteRednderer = GetComponent<SpriteRenderer>();
             if (_objectSpriteRednderer == null) Debug.LogWarning($"does not find the SpriteRenderer on the {gameObject.name} object ");
         }
 

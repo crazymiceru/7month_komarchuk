@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2905677824942679602}
   - component: {fileID: 3981464046430168101}
+  - component: {fileID: 5547585714779277571}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -60,6 +61,18 @@ MonoBehaviour:
   m_Spacing: {x: 60, y: 60}
   m_Constraint: 1
   m_ConstraintCount: 7
+--- !u!114 &5547585714779277571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2756028703775504841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 352e62022b44c784e95acc62bda0fc32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4446668087841310855
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,6 +85,7 @@ GameObject:
   - component: {fileID: 881018471517875281}
   - component: {fileID: 2960024534319894202}
   - component: {fileID: 3246934946937432367}
+  - component: {fileID: 1927407593730614876}
   m_Layer: 5
   m_Name: Close
   m_TagString: Untagged
@@ -180,28 +194,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  _typeAnimationData:
-  - typeTransitionButton: 4
-    typeAnimation: 3
-    ease: 0
-    value: 360
-    duration: 2
-    isLoop: 1
-    isClearPosition: 1
-  - typeTransitionButton: 2
-    typeAnimation: 1
-    ease: 0
-    value: 5
-    duration: 1
-    isLoop: 0
-    isClearPosition: 1
-  - typeTransitionButton: 1
-    typeAnimation: 2
-    ease: 1
-    value: 0.7
-    duration: 0.3
-    isLoop: 0
-    isClearPosition: 1
+  _customButtonCfg: {fileID: 11400000, guid: ba01be127aa8d6d43902257fbdc103db, type: 2}
+--- !u!114 &1927407593730614876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446668087841310855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b627197dcd35584aa3013a3051e0f0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5430734542762922543
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,6 +296,7 @@ GameObject:
   - component: {fileID: 1189972473664343571}
   - component: {fileID: 729386544370994758}
   - component: {fileID: 1490042946822178746}
+  - component: {fileID: 5611453620455251596}
   m_Layer: 5
   m_Name: TimeNextUpdate
   m_TagString: Untagged
@@ -414,3 +420,15 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5611453620455251596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7107298103826745479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 057dd4d0d7a151e4fb21e4f757000e09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

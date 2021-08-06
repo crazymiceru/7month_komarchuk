@@ -10,7 +10,7 @@ namespace MobileGame
         }
         private static Camera _mainCamera;
 
-        internal static Transform ActiveElements => _trash != null ? _trash : _trash = GameObject.FindObjectOfType<TagFolderActiveElements>().transform;
+        internal static Transform ActiveElements => _trash != null ? _trash : _trash = GameObject.FindObjectOfType<TagFolderActiveElements>().transform;        
         private static Transform _trash;
 
         internal static Transform Canvas => _canvas != null ? _canvas : _canvas = GameObject.FindObjectOfType<TagCanvas>().transform;

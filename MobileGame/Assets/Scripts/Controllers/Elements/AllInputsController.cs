@@ -14,12 +14,10 @@ namespace MobileGame
             if (Application.isEditor && !isRemoteConnected())
             {
                 AddController(new InputController(controlM));
-                Debug.Log($"Keyboard Control");
             }
             else
             {
                 AddController(new TouchController(controlM));
-                Debug.Log($"Touch Control");
             }
 
             bool isRemoteConnected()

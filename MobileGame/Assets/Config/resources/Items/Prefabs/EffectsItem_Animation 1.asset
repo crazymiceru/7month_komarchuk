@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 914975f201565d94487552afbca400c1, type: 3}
+  m_Name: EffectsItem_Animation 1
+  m_EditorClassIdentifier: 
+  _speed: 10
+  _isMirror: 0
+  _animationData:
+  - _isLoop: 1
+    _typeAnimation: 1
+    _sprites:
+    - {fileID: 5986030973748356752, guid: 907a19a0cc99bf04288d3b0c0d6afcfb, type: 3}
+    - {fileID: -5600206312213581617, guid: 907a19a0cc99bf04288d3b0c0d6afcfb, type: 3}
+    - {fileID: 3815954189206336483, guid: 907a19a0cc99bf04288d3b0c0d6afcfb, type: 3}
+    - {fileID: -3690502768834906923, guid: 907a19a0cc99bf04288d3b0c0d6afcfb, type: 3}
+    - {fileID: -49130668184793455, guid: 907a19a0cc99bf04288d3b0c0d6afcfb, type: 3}
+    - {fileID: -2330519403281856691, guid: 907a19a0cc99bf04288d3b0c0d6afcfb, type: 3}
+    - {fileID: -4796932125324312052, guid: 907a19a0cc99bf04288d3b0c0d6afcfb, type: 3}
+    - {fileID: 4348620978117878488, guid: 907a19a0cc99bf04288d3b0c0d6afcfb, type: 3}
+    - {fileID: 7788287979965792003, guid: 907a19a0cc99bf04288d3b0c0d6afcfb, type: 3}
+    - {fileID: -5876230404456235001, guid: 907a19a0cc99bf04288d3b0c0d6afcfb, type: 3}
+    - {fileID: -7061159883300251746, guid: 907a19a0cc99bf04288d3b0c0d6afcfb, type: 3}

@@ -31,9 +31,10 @@ namespace MobileGame
             Debug.Log($"Amount of wood:{_gameModel.wood.Value}");
 
             var dataRoot = CreateGameObject(Reference.Canvas, _nameResDailyRewards);
-            _folderElements = dataRoot.gameObject.transform.Find("Grid").transform;
+            _folderElements = dataRoot.gameObject.transform.
+                GetComponentInChildren<TagGreed>().transform;
 
-            var closeElement = dataRoot.gameObject.transform.Find("Close");
+            var closeElement = dataRoot.gameObject.transform.GetComponentInChildren<TagButtonClose>();
             if (closeElement != null && closeElement.TryGetComponent<Button>(out Button button))
             {
                 button.onClick.AddListener(Close);
@@ -41,7 +42,7 @@ namespace MobileGame
             }
             else Debug.LogWarning($"Dont make the Close");
 
-            var TimeNextUpdateElement = dataRoot.gameObject.transform.Find("TimeNextUpdate");
+            var TimeNextUpdateElement = dataRoot.gameObject.transform.GetComponentInChildren<TagTimeNextUpdate>(); ;
             if (TimeNextUpdateElement != null &&
                 TimeNextUpdateElement.TryGetComponent<TMP_Text>(out TMP_Text tMP_Text))
             {
