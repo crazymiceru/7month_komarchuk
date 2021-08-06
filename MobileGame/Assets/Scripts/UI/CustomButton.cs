@@ -10,8 +10,10 @@ namespace MobileGame
 {
     public sealed class CustomButton : Button
     {
-        public static string NameTypeAnimationData = nameof(_typeAnimationData);
-        [SerializeField] private TypeAnimationData[] _typeAnimationData;
+        public static string NameTypeAnimationData = nameof(_customButtonCfg);
+
+        [SerializeField] private CustomButtonCfg _customButtonCfg;
+        //[SerializeField] private TypeAnimationData[] _typeAnimationData;
         private Dictionary<TypeTransitionButton, TypeAnimationData> _typeAnimationDataDictionary
             = new Dictionary<TypeTransitionButton, TypeAnimationData>();
 
@@ -21,6 +23,7 @@ namespace MobileGame
         private Vector3 _startRotation;
         private Vector3 _startScale;
         private Tweener tweener = null;
+
 
         protected override void Start()
         {
@@ -50,16 +53,12 @@ namespace MobileGame
         private void MakeDictionary()
         {
             foreach (TypeTransitionButton item in (TypeTransitionButton[])Enum.GetValues(typeof(TypeTransitionButton)))
-            {
                 _typeAnimationDataDictionary.Add(item, new TypeAnimationData());
-            }
-            if (_typeAnimationData != null)
-            {
-                foreach (var item in _typeAnimationData)
-                {
+
+            if (_customButtonCfg.typeAnimationData == null) return;
+
+                foreach (var item in _customButtonCfg.typeAnimationData)
                     _typeAnimationDataDictionary[item.typeTransitionButton] = item;
-                }
-            }
         }
 
         public override void OnPointerClick(PointerEventData eventData)
@@ -93,6 +92,10 @@ namespace MobileGame
             var item = _typeAnimationDataDictionary[typeTransition];
 
             _rectTransform.DOKill();
+            if (item.audioClip!=null)
+            {
+                SoundUI.inst.Play(item.audioClip);                
+            }
             if (item.isClearPosition)
             {
                 _rectTransform.position = _startPosition;

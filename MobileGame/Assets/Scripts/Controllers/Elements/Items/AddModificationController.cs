@@ -6,19 +6,22 @@ namespace MobileGame
     {
         private ControlLeak _controlLeak = new ControlLeak("UpgradeController");
         private IItemsModel<T> _upgradeM;
-        private UnitModel _unitM;
+        private UnitModel _unitModel;
         private IUnitView _unitView;
-        private GameObject _goShield;
+        private SpriteRenderer _goShield;
 
-        internal AddModificationController(IItemsModel<T> upgradeM, UnitModel unitM, IUnitView unitView)
+        internal AddModificationController(IItemsModel<T> upgradeM, UnitModel unitModel, IUnitView unitView)
         {
             _upgradeM = upgradeM;
-            _unitM = unitM;
+            _unitModel = unitModel;
             _upgradeM.EvtAddItem += AddItem;
             _upgradeM.EvtRemoveItem += RemoveItem;
             _unitView = unitView;
-            _goShield = unitView.objectTransform.Find("Shield").gameObject;
-            if (_goShield == null) Debug.LogWarning($"Dont find Shield View");
+
+            var _tagShield = unitView.objectTransform.GetComponentInChildren<TagShield>();
+            if (_tagShield == null) Debug.LogWarning($"Dont find Shield View");
+            _goShield = _tagShield.gameObject.GetComponent<SpriteRenderer>();
+            _goShield.enabled = _unitModel.isShielded.Value;
         }
 
         private void AddItem(T upgradeItemCfg, bool isHave)
@@ -55,10 +58,10 @@ namespace MobileGame
             switch (typeUpgrade)
             {
                 case TypeModification.speed:
-                    _unitM.maxSpeed.Value += value * sign;
+                    _unitModel.maxSpeed.Value += value * sign;
                     break;
                 case TypeModification.jump:
-                    _unitM.powerJump.Value += value * sign;                    
+                    _unitModel.powerJump.Value += value * sign;                    
                     break;
                 case TypeModification.setSize:
                     var currentSize = _unitView.objectTransform.localScale.x;
@@ -66,8 +69,8 @@ namespace MobileGame
                     _unitView.objectTransform.localScale = new Vector3(currentSize, currentSize, currentSize);
                     break;
                 case TypeModification.shield:
-                    _unitM.isShielded.Value = isOn;
-                    _goShield.SetActive(isOn);
+                    _unitModel.isShielded.Value = isOn;
+                    _goShield.enabled=isOn;
                     break;
                 case TypeModification.none:
                     break;

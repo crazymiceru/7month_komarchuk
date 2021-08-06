@@ -100,6 +100,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _typeItem: 3
   _numCfg: 1
+  _objectTransform: {fileID: 0}
+  _objectRigidbody2D: {fileID: 0}
+  _objectSpriteRednderer: {fileID: 6208892392951822274}
 --- !u!50 &7584106993170871565
 Rigidbody2D:
   serializedVersion: 4

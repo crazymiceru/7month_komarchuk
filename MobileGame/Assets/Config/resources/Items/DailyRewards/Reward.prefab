@@ -237,35 +237,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
-  _typeAnimationData:
-  - typeTransitionButton: 2
-    typeAnimation: 1
-    ease: 5
-    value: 3
-    duration: 1
-    isLoop: 0
-    isClearPosition: 1
-  - typeTransitionButton: 1
-    typeAnimation: 2
-    ease: 1
-    value: 0.7
-    duration: 0.1
-    isLoop: 0
-    isClearPosition: 0
-  - typeTransitionButton: 4
-    typeAnimation: 2
-    ease: 1
-    value: 1
-    duration: 0.1
-    isLoop: 0
-    isClearPosition: 0
-  - typeTransitionButton: 3
-    typeAnimation: 1
-    ease: 1
-    value: 3
-    duration: 1
-    isLoop: 0
-    isClearPosition: 1
+  _customButtonCfg: {fileID: 11400000, guid: b3d865ff704885443af4ae518890d3dc, type: 2}
 --- !u!1 &3768143864200754089
 GameObject:
   m_ObjectHideFlags: 0

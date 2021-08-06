@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using UnityEngine;
 
 namespace MobileGame
 {
@@ -8,6 +9,7 @@ namespace MobileGame
         public TypeTransitionButton typeTransitionButton = TypeTransitionButton.none;
         public TypeAnimationButton typeAnimation = TypeAnimationButton.none;
         public Ease ease = Ease.Linear;
+        public AudioClip audioClip;
         public float value = 0;
         public float duration = 0.5f;
         public bool isLoop;

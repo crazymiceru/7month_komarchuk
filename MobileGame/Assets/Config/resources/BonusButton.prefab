@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2615357724045619017}
   - component: {fileID: 2615357724045619018}
   - component: {fileID: 2615357724045619019}
-  - component: {fileID: 2615357724045619016}
+  - component: {fileID: 3625853284627707403}
   m_Layer: 5
   m_Name: BonusButton
   m_TagString: Untagged
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2615357724045619016
+--- !u!114 &3625853284627707403
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,7 +85,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2615357724045619022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: c62056f7390e11049ba3917d0cccee81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -120,3 +120,4 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+  _customButtonCfg: {fileID: 11400000, guid: b42f9bb117a6dbf409b3d9ab1f98b92d, type: 2}
