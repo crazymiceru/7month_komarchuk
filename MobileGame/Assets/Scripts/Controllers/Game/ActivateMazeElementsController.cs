@@ -37,16 +37,7 @@ namespace MobileGame
                         (controller as EnemyBirdBuild).Create(unitMPlayer, playerView);
                         break;
                 }
-
-
-                //Debug.Log($"GameObject:{(item as MonoBehaviour).name}");
-                //AddController(
-                //    UtilsUnit.ParseType(type.type).SetNumCfg(type.cfg)
-                //    .SetGameObject((item as MonoBehaviour).gameObject).CreateControllers()
-                //    );
-
             }
-
         }
     }
 }

@@ -24,8 +24,8 @@ namespace MobileGame
                 var item = Input.touches[0];
                 if (item.phase == TouchPhase.Moved || item.phase == TouchPhase.Began)
                 {
-                    var currentPosition = _camera.ScreenToWorldPoint(item.position) - _camera.transform.position;
-                    _controlM.positionCursor.Value = currentPosition;
+                    var currentPosition = _camera.ScreenToWorldPoint(item.position) - _camera.transform.position;                    
+                    _controlM.positionCursor.Value = _camera.ScreenToWorldPoint(item.position);
 
                     if (item.phase == TouchPhase.Began)
                     {

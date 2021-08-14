@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using Object = UnityEngine.Object;
 
 namespace MobileGame
@@ -10,11 +11,13 @@ namespace MobileGame
     {
         #region Fields
 
-        protected List<GameObjectData> _gameObjects=new List<GameObjectData>();
-        protected int _numCfg = 0;        
-        protected List<IController> _iControllers=new List<IController>();
+        protected List<GameObjectData> _gameObjects = new List<GameObjectData>();
+        protected int _numCfg = 0;
+        protected List<IController> _iControllers = new List<IController>();
         protected List<string> DataNames = new List<string>();
         private bool isDispose;
+        internal Action<GameObjectData> evtAddressableCompleted;
+
 
         #endregion
 
@@ -38,10 +41,11 @@ namespace MobileGame
             return this;
         }
 
-        protected void AddController(IController controller)
+        protected IController AddController(IController controller)
         {
             _iControllers.Add(controller);
             ListControllers.Add(controller);
+            return controller;
         }
 
         private void GetInfoGameObject(GameObjectData data)
@@ -88,13 +92,15 @@ namespace MobileGame
             for (int i = 0; i < _iControllers.Count; i++)
             {
                 ListControllers.Delete(_iControllers[i]);
-                if (_iControllers[i] is IDisposable) (_iControllers[i] as IDisposable).Dispose();
+                if (_iControllers[i] is IDisposable disposeController)
+                    disposeController.Dispose();
             }
             _iControllers.Clear();
 
             for (int i = 0; i < _gameObjects.Count; i++)
             {
-                Object.Destroy(_gameObjects[i].gameObject);
+                if (!_gameObjects[i].isAddressable) Object.Destroy(_gameObjects[i].gameObject);
+                else Addressables.ReleaseInstance(_gameObjects[i].gameObject);
             }
             _gameObjects.Clear();
         }
@@ -112,16 +118,25 @@ namespace MobileGame
         {
             var data = new GameObjectData();
             nameRes = nameRes.Replace("##", $"{_numCfg}");
-            data.prefabGameObject = LoadResources.GetValue<GameObject>($"{nameRes}");
+            data.prefabGameObject = LoadResources.GetValue<GameObject>(nameRes);
+            return data;
+        }
+        
+        private GameObjectData CreateUnitBasicBundle(string bandle,string key)
+        {
+            var data = new GameObjectData();
+            key = key.Replace("##", $"{_numCfg}");
+            data.prefabGameObject = LoadBundles.GetValue<GameObject>(bandle,key);
             return data;
         }
 
+
         protected GameObjectData CreateGameObjectPool(Transform folder, string nameRes)
         {
-            var data= CreateUnitBasic(nameRes);
+            var data = CreateUnitBasic(nameRes);
             data.gameObject = PoolInstatiate.Instantiate(data.prefabGameObject);
             _gameObjects.Add(data);
-            SetFolder(folder,data);
+            SetFolder(folder, data);
             GetInfoGameObject(data);
             return data;
         }
@@ -129,10 +144,35 @@ namespace MobileGame
         protected GameObjectData CreateGameObject(Transform folder, string nameRes)
         {
             var data = CreateUnitBasic(nameRes);
-            data.gameObject = GameObject.Instantiate(data.prefabGameObject,folder);
+            data.gameObject = GameObject.Instantiate(data.prefabGameObject, folder);
             GetInfoGameObject(data);
             _gameObjects.Add(data);
             return data;
+        }
+        protected GameObjectData CreateGameObjectBandle(Transform folder, string bandle, string key)
+        {
+            var data = CreateUnitBasicBundle(bandle,key);
+            data.gameObject = GameObject.Instantiate(data.prefabGameObject, folder);
+            GetInfoGameObject(data);
+            _gameObjects.Add(data);
+            return data;
+        }
+
+        protected void CreateGameObjectAddressable(Transform folder, string key)
+        {
+            key = key.Replace("##", $"{_numCfg}");
+            var addressable = Addressables.InstantiateAsync(key, folder);
+            addressable.Completed += CreateGameObjectAddressableCompleted;
+        }
+
+        private void CreateGameObjectAddressableCompleted(UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationHandle<GameObject> obj)
+        {
+            var data = new GameObjectData();
+            data.isAddressable = true;
+            data.gameObject = obj.Result;
+            GetInfoGameObject(data);
+            _gameObjects.Add(data);
+            evtAddressableCompleted?.Invoke(data);
         }
 
         public ControllerBasic SetGameObject(GameObject gameObject)

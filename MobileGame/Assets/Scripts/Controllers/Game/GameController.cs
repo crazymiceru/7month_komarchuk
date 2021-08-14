@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using UnityEngine.Advertisements;
 
 namespace MobileGame
 {
@@ -8,6 +7,7 @@ namespace MobileGame
     {
         private GameModel _gameModel;
         private UnitModel _playerModel;
+        private Vector3 _startCameraPosition;
 
         private ControlLeak _controlLeak = new ControlLeak("GameBuild");
 
@@ -16,7 +16,8 @@ namespace MobileGame
             _gameModel = gameModel;
             _playerModel = playerModel;
             _gameModel.gameState.Subscribe(ChangeStateGame);
-            _gameModel.gameState.Value = GameState.menu;
+            _gameModel.gameState.Value = GameState.Menu;
+            _startCameraPosition = Reference.MainCamera.transform.position;
         }
 
         protected override void OnDispose()
@@ -28,17 +29,17 @@ namespace MobileGame
         {
             switch (gameState)
             {
-                case GameState.menu:
+                case GameState.Menu:
                     Menu();
                     break;
-                case GameState.startLevel:
+                case GameState.StartLevel:
                     StartGame();
                     break;
-                case GameState.gameOver:
+                case GameState.GameOver:
                     break;
-                case GameState.winGame:
+                case GameState.WinGame:
                     break;
-                case GameState.dailyRewards:
+                case GameState.DailyRewards:
                     DailyRewards();
                     break;
                 default:
@@ -54,6 +55,7 @@ namespace MobileGame
 
         private void Menu()
         {
+            LoadBundles.AddBundle("test");
             Clear();
             AddController(new MenuGlobalController(_gameModel.gameState));
         }
@@ -62,22 +64,30 @@ namespace MobileGame
         {
             Transform playerTransform;
             Transform skyTransform;
+            ControllerBasic sceneController;
+            ControllerBasic playerController;
+
             Clear();
+            Reference.MainCamera.transform.position = _startCameraPosition;
+
             _gameModel.Analitics.SendMessage("Start Game");
-            var playerController = new PlayerBuild().Create(_gameModel, _playerModel);
-            var _playerView = playerController[0].iUnitView;
-            AddController(playerController);
-            playerTransform = playerController[0].gameObject.transform;
-            var sceneController = new SceneController(1);
-            AddController(sceneController);
-            var dataScene = sceneController[0];
-            skyTransform = dataScene.gameObject.transform.GetComponentInChildren<TagSky>().gameObject.transform;
-            if (playerTransform != null && skyTransform != null)
+
+            AddController(sceneController = new SceneController(_gameModel.currentLevel.Value));
+            sceneController.evtAddressableCompleted += LoadSceneCompleted;
+
+            void LoadSceneCompleted(GameObjectData dataScene)
             {
-                AddController(new ParallaxController(skyTransform, playerTransform, LoadResources.GetValue<ParalaxCfg>("Any/ParalaxBackground")));
-                AddController(new ParallaxController(Reference.MainCamera.transform, playerTransform, LoadResources.GetValue<ParalaxCfg>("Any/ParalaxCamera")));
+                AddController(playerController = new PlayerBuild().Create(_gameModel, _playerModel));
+                playerTransform = playerController[0].gameObject.transform;
+                var _playerView = playerController[0].iUnitView;
+
+                AddController(new ActivateMazeElementsController(dataScene.gameObject.transform, _playerModel, _playerView));
+
+                skyTransform = dataScene.gameObject.transform.GetComponentInChildren<TagSky>().transform;
+                AddController(new AllParallaxController(playerTransform, skyTransform));
+
+                AddController(new ExitController(_gameModel));
             }
-            AddController(new ActivateMazeElementsController(dataScene.gameObject.transform, _playerModel, _playerView));
         }
     }
 }

@@ -19,6 +19,11 @@ namespace MobileGame
             _gameM = gameM;
         }
 
+        protected override void OnDispose()
+        {
+            _button?.onClick.RemoveAllListeners();
+        }
+
         private void Activate()
         {
             _button.gameObject.SetActive(false);
@@ -37,11 +42,6 @@ namespace MobileGame
             {
                 _button.gameObject.SetActive(true);
             }
-        }
-
-        protected override void OnDispose()
-        {
-            _button?.onClick.RemoveAllListeners();
         }
     }
 }

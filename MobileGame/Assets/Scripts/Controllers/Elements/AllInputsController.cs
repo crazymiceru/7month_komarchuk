@@ -17,7 +17,11 @@ namespace MobileGame
             }
             else
             {
+#if UNITY_STANDALONE_WIN
+                AddController(new InputController(controlM));
+#else
                 AddController(new TouchController(controlM));
+#endif
             }
 
             bool isRemoteConnected()

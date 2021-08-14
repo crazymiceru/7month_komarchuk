@@ -14,14 +14,21 @@ namespace MobileGame
         {
             _upgradeM = upgradeM;
             _unitModel = unitModel;
-            _upgradeM.EvtAddItem += AddItem;
-            _upgradeM.EvtRemoveItem += RemoveItem;
             _unitView = unitView;
 
             var _tagShield = unitView.objectTransform.GetComponentInChildren<TagShield>();
             if (_tagShield == null) Debug.LogWarning($"Dont find Shield View");
             _goShield = _tagShield.gameObject.GetComponent<SpriteRenderer>();
             _goShield.enabled = _unitModel.isShielded.Value;
+
+            _upgradeM.EvtAddItem += AddItem;
+            _upgradeM.EvtRemoveItem += RemoveItem;
+        }
+
+        protected override void OnDispose()
+        {
+            _upgradeM.EvtAddItem -= AddItem;
+            _upgradeM.EvtRemoveItem -= RemoveItem;
         }
 
         private void AddItem(T upgradeItemCfg, bool isHave)

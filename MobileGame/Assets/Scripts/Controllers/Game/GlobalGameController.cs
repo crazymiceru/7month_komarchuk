@@ -16,7 +16,7 @@ namespace MobileGame
             _playerModel = new UnitModel();
             _gameModel = new GameModel(unityAds);
             AddController(new FireBirdController(_gameModel));
-            AddController(new GameController(_gameModel,_playerModel));
+            AddController(new GameController(_gameModel,_playerModel));            
         }
     }
 }

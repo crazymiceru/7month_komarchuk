@@ -22,14 +22,18 @@ namespace MobileGame
             var data = CreateGameObject(Reference.Canvas, _nameRes);
             folder = data.gameObject.transform;
             _effectsModel = effectsModel;
-            _effectsModel.EvtAddItem += AddItem;
-            _effectsModel.EvtRemoveItem += RemoveItem;
             var go = CreateGameObject(folder, _nameResEffect).gameObject;
-
             _effectsImageData.Add(0, new EffectsImageData { gameObject = go });
             heightImage = go.GetComponent<RectTransform>().rect.height;
             go.SetActive(false);
-            //countEffects = 0;
+            _effectsModel.EvtAddItem += AddItem;
+            _effectsModel.EvtRemoveItem += RemoveItem;
+        }
+
+        protected override void OnDispose()
+        {
+            _effectsModel.EvtAddItem -= AddItem;
+            _effectsModel.EvtRemoveItem -= RemoveItem;
         }
 
         private void AddItem(EffectsItemCfg effectsItemCfg, bool isHave)

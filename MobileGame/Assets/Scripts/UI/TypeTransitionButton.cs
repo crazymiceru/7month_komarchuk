@@ -3,10 +3,10 @@
     [System.Serializable]
     public enum TypeTransitionButton
     {
-        none,
-        pressed,
-        highlight,
-        click,
-        exit,
+        None,
+        Pressed,
+        Highlight,
+        Click,
+        Exit,
     }
 }
