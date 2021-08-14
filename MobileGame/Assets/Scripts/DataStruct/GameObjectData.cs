@@ -8,5 +8,6 @@ namespace MobileGame
         public GameObject prefabGameObject;
         public IInteractive iInteractive;
         public IUnitView iUnitView;
+        public bool isAddressable;
     }
 }

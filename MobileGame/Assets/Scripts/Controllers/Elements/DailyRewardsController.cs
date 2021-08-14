@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,23 +34,22 @@ namespace MobileGame
                 GetComponentInChildren<TagGreed>().transform;
 
             var closeElement = dataRoot.gameObject.transform.GetComponentInChildren<TagButtonClose>();
-            if (closeElement != null && closeElement.TryGetComponent<Button>(out Button button))
+            if (closeElement != null && closeElement.TryGetComponent<Button>(out Button buttonClose))
             {
-                button.onClick.AddListener(Close);
-                _buttonClose = button;
-            }
-            else Debug.LogWarning($"Dont make the Close");
+                buttonClose.onClick.AddListener(Close);
+                _buttonClose = buttonClose;
+            }            
+            else Debug.LogWarning($"The 'Close' button cannot be created");
 
             var TimeNextUpdateElement = dataRoot.gameObject.transform.GetComponentInChildren<TagTimeNextUpdate>(); ;
             if (TimeNextUpdateElement != null &&
-                TimeNextUpdateElement.TryGetComponent<TMP_Text>(out TMP_Text tMP_Text))
+                TimeNextUpdateElement.TryGetComponent(out TMP_Text tMP_Text))
             {
                 _timeNextUpdateText = tMP_Text;
                 _timeNextUpdateText.text = "";
             }
             _dailyRewardsArray = LoadResources.GetValue<ItemsArray>(_nameResDailyRewardsArrayCfg);
             _dailyRewardsVisual = LoadResources.GetValue<DailyRewardsVisualCfg>(_nameResDailyRewardsVisualCfg);
-            //Debug.Log($"currentDayReward: {_gameModel.currentDayReward.Value}");
             _gameModel.dateTimeDataBase.Subscribe(GetDateTimeBase);
             _gameModel.UpdateDateTimeDataBase();
         }
@@ -75,9 +73,7 @@ namespace MobileGame
         private void UpdateRewardsView(DateTime dateTimeDataBase)
         {
             if ((dateTimeDataBase - _gameModel.timeStartRewards.Value).TotalSeconds > (_dailyRewardsArray.ItemCfg.Count - 1) * durationNextReward)
-            {
                 Restart();
-            }
 
             var differenceTime = dateTimeDataBase - _gameModel.timeGetRewards.Value;
             var tmpTimeNextUpdateText = 
@@ -85,17 +81,18 @@ namespace MobileGame
 
             for (int i = 0; i < _dailyRewardsArray.ItemCfg.Count; i++)
             {
-                var dailyRewardCfg = _dailyRewardsArray.ItemCfg[i] as DailyRewardCfg;
-
-                if (i == _gameModel.currentDayReward.Value
-                    && (dateTimeDataBase - _gameModel.timeGetRewards.Value).TotalSeconds >= durationNextReward)
+                if (_dailyRewardsArray.ItemCfg[i] is DailyRewardCfg dailyRewardCfg)
                 {
-                    _rewardsViews[i].InitialisationUpdate(true, true, () => Click(dailyRewardCfg.TypeReward, dailyRewardCfg.Value));
-                    tmpTimeNextUpdateText = "";
+                    if (i == _gameModel.currentDayReward.Value
+                        && (dateTimeDataBase - _gameModel.timeGetRewards.Value).TotalSeconds >= durationNextReward)
+                    {
+                        _rewardsViews[i].InitialisationUpdate(true, true, () => Click(dailyRewardCfg.TypeReward, dailyRewardCfg.Value));
+                        tmpTimeNextUpdateText = "";
+                    }
+                    else if (i < _gameModel.currentDayReward.Value)
+                        _rewardsViews[i].InitialisationUpdate(false, false);
+                    else _rewardsViews[i].InitialisationUpdate(true, false);
                 }
-                else if (i < _gameModel.currentDayReward.Value)
-                    _rewardsViews[i].InitialisationUpdate(false, false);
-                else _rewardsViews[i].InitialisationUpdate(true, false);
             }
 
             _timeNextUpdateText.text = tmpTimeNextUpdateText;
@@ -107,14 +104,11 @@ namespace MobileGame
             MakeRewardsView(dateTimeDataBase);
         }
 
-        private void Close() => _gameModel.gameState.Value = GameState.startLevel;
+        private void Close() => _gameModel.gameState.Value = GameState.StartLevel;
 
         private void Click(TypeReward typeReward, int countReward)
         {
             Debug.Log($"Click typereward:{typeReward} count:{countReward}");
-            //var dailyRewardCfg = _dailyRewardsArray.ItemCfg[_gameModel.currentDayReward.Value] as DailyRewardCfg;
-            //_rewardsViews[_gameModel.currentDayReward.Value].Initialisation(dailyRewardCfg, _dailyRewardsVisual, false, false);
-
             _gameModel.timeGetRewards.Value = _gameModel.dateTimeDataBase.Value;
             _gameModel.currentDayReward.Value++;
 

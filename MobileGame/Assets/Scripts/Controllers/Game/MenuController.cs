@@ -25,7 +25,7 @@ namespace MobileGame
 
         private void StartGame()
         {
-            _gameState.Value = GameState.dailyRewards;
+            _gameState.Value = GameState.DailyRewards;
             Object.Destroy(_menu);
         }
 

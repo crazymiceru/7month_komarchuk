@@ -4,11 +4,11 @@ namespace MobileGame
 {
     public enum GameState
     {
-        menu=0,
-        startLevel=1,
-        gameOver=2,
-        winGame=3,
-        dailyRewards=4
+        Menu=0,
+        StartLevel=1,
+        GameOver=2,
+        WinGame=3,
+        DailyRewards=4
     }
 
 }

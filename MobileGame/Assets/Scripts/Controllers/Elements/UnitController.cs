@@ -28,12 +28,19 @@ namespace MobileGame
             _unitData = unitData;
             _effectsModel = effectsModel;
             _unit.packInteractiveData.Value = new PackInteractiveData(_unitData.AttackPower, typeItem);
-            _iInteractive.evtAttack += Attacked;
-            _iInteractive.evtCollision += OutInteractive;
-            _unit.evtDecLives += DecLive;
             _gameObject = (_iInteractive as MonoBehaviour).gameObject;
             _unit.maxSpeed.Value = unitData.MaxSpeed;
             _unit.powerJump.Value = unitData.PowerJump;
+            _iInteractive.evtAttack += Attacked;
+            _iInteractive.evtCollision += OutInteractive;
+            _unit.evtDecLives += DecLive;
+        }
+
+        protected override void OnDispose()
+        {
+            //_iInteractive.evtAttack -= Attacked;
+            //_iInteractive.evtCollision -= OutInteractive;
+            _unit.evtDecLives -= DecLive;
         }
 
         public void Initialization()

@@ -4,10 +4,10 @@ using UnityEngine;
 namespace MobileGame
 {
     [System.Serializable]
-    public sealed class TypeAnimationData
+    public sealed class ButtonAnimationData
     {
-        public TypeTransitionButton typeTransitionButton = TypeTransitionButton.none;
-        public TypeAnimationButton typeAnimation = TypeAnimationButton.none;
+        public TypeTransitionButton typeTransitionButton = TypeTransitionButton.None;
+        public TypeAnimationButton typeAnimation = TypeAnimationButton.None;
         public Ease ease = Ease.Linear;
         public AudioClip audioClip;
         public float value = 0;

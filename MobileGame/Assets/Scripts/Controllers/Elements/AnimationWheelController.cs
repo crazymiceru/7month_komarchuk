@@ -23,7 +23,12 @@ namespace MobileGame
             _iUnitView = iUnitView;
             _whells = _iUnitView.objectTransform.GetComponentsInChildren<TagWheel>()
                 .Select(x => (x as MonoBehaviour).transform).ToArray();
-            control.Subscribe(UpdateControl);
+            _control.Subscribe(UpdateControl);
+        }
+
+        protected override void OnDispose()
+        {
+            _control.UnSubscribe(UpdateControl);
         }
 
         private void UpdateControl(Vector2 value)

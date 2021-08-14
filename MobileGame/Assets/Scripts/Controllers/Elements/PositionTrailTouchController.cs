@@ -57,6 +57,7 @@ namespace MobileGame
             }
 
             _trails[currentTrail].transform.position = _positionTouch.Value;
+
             if (_isNewTouch.Value) _trails[currentTrail].renderer.Clear();
         }
     }

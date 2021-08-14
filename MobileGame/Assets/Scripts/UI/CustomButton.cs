@@ -14,16 +14,14 @@ namespace MobileGame
 
         [SerializeField] private CustomButtonCfg _customButtonCfg;
         //[SerializeField] private TypeAnimationData[] _typeAnimationData;
-        private Dictionary<TypeTransitionButton, TypeAnimationData> _typeAnimationDataDictionary
-            = new Dictionary<TypeTransitionButton, TypeAnimationData>();
+        private Dictionary<TypeTransitionButton, ButtonAnimationData> _typeAnimationDataDictionary
+            = new Dictionary<TypeTransitionButton, ButtonAnimationData>();
 
         private RectTransform _rectTransform;
         private bool _isGetValues;
         private Vector3 _startPosition;
         private Vector3 _startRotation;
         private Vector3 _startScale;
-        private Tweener tweener = null;
-
 
         protected override void Start()
         {
@@ -46,16 +44,16 @@ namespace MobileGame
                 _startRotation = _rectTransform.rotation.eulerAngles;
                 _startScale = _rectTransform.localScale;
                 _isGetValues = true;
-                MakeAnimation(TypeTransitionButton.exit);
+                MakeAnimation(TypeTransitionButton.Exit);
             }
         }
 
         private void MakeDictionary()
         {
             foreach (TypeTransitionButton item in (TypeTransitionButton[])Enum.GetValues(typeof(TypeTransitionButton)))
-                _typeAnimationDataDictionary.Add(item, new TypeAnimationData());
+                _typeAnimationDataDictionary.Add(item, new ButtonAnimationData());
 
-            if (_customButtonCfg.typeAnimationData == null) return;
+            if (_customButtonCfg == null) return;
 
                 foreach (var item in _customButtonCfg.typeAnimationData)
                     _typeAnimationDataDictionary[item.typeTransitionButton] = item;
@@ -64,31 +62,32 @@ namespace MobileGame
         public override void OnPointerClick(PointerEventData eventData)
         {
             GetStartValues();
-            MakeAnimation(TypeTransitionButton.click);
+            MakeAnimation(TypeTransitionButton.Click);
             base.OnPointerClick(eventData);
         }
 
         public override void OnPointerEnter(PointerEventData eventData)
         {
             GetStartValues();
-            MakeAnimation(TypeTransitionButton.highlight);
+            MakeAnimation(TypeTransitionButton.Highlight);
             base.OnPointerEnter(eventData);
         }
 
         public override void OnPointerExit(PointerEventData eventData)
         {
             GetStartValues();
-            MakeAnimation(TypeTransitionButton.exit);
+            MakeAnimation(TypeTransitionButton.Exit);
         }
 
         public override void OnPointerDown(PointerEventData eventData)
         {
             GetStartValues();
-            MakeAnimation(TypeTransitionButton.pressed);
+            MakeAnimation(TypeTransitionButton.Pressed);
         }
 
         private void MakeAnimation(TypeTransitionButton typeTransition)
         {
+            Tweener tweener;
             var item = _typeAnimationDataDictionary[typeTransition];
 
             _rectTransform.DOKill();
@@ -105,15 +104,15 @@ namespace MobileGame
 
             switch (item.typeAnimation)
             {
-                case TypeAnimationButton.shake:
+                case TypeAnimationButton.Shake:
                     tweener = _rectTransform.DOShakeAnchorPos(item.duration, item.value).SetEase(item.ease);
                     if (item.isLoop) tweener?.SetLoops(-1);
                     break;
-                case TypeAnimationButton.scale:
+                case TypeAnimationButton.Scale:
                     tweener = _rectTransform.DOScale(item.value, item.duration).SetEase(item.ease);
                     if (item.isLoop) tweener?.SetLoops(-1);
                     break;
-                case TypeAnimationButton.rotate:
+                case TypeAnimationButton.Rotate:
                     tweener = _rectTransform.DORotate(new Vector3(0, 0, item.value), item.duration, RotateMode.FastBeyond360).SetEase(item.ease);
                     if (item.isLoop) tweener?.SetLoops(-1);
                     break;

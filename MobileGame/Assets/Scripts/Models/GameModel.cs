@@ -12,6 +12,8 @@ namespace MobileGame
         public SubscriptionIntPrefs money { get; }
         public SubscriptionIntPrefs wood { get; }
 
+        public SubscriptionField<int> currentLevel;
+
         #region rewards
 
         public SubscriptionIntPrefs currentDayReward { get; }
@@ -43,6 +45,7 @@ namespace MobileGame
             timeGetRewards = new SubscriptionDatePrefs(nameof(timeGetRewards));
             timeStartRewards = new SubscriptionDatePrefs(nameof(timeStartRewards));
             dateTimeDataBase = new SubscriptionField<DateTime>();
+            currentLevel = new SubscriptionField<int> { Value = 0 };
             Analitics = new UnityAnalitics();
             this.ADS = ADS;
         }

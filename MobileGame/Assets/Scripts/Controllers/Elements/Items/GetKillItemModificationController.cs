@@ -15,6 +15,11 @@
             _killTypeItem.Subscribe(Activate);
         }
 
+        protected override void OnDispose()
+        {
+            _killTypeItem.UnSubscribe(Activate);
+        }
+
         private void Activate((TypeUnit typeUnit, int cfg) killTypeItemValue)
         {
             switch (killTypeItemValue.typeUnit)
@@ -29,11 +34,6 @@
                 default:
                     break;
             }
-        }
-
-        protected override void OnDispose()
-        {
-            _killTypeItem.UnSubscribe(Activate);
         }
     }
 }

@@ -9,7 +9,8 @@ namespace MobileGame
         private UnitModel _unit;
         private Transform _transform;
         private int count;
-        SubscriptionField<bool> _isObstacle;
+        private SubscriptionField<bool> _isObstacle;
+        private OnTriggerView[] _allGroundView;
 
         internal OnObstacleController(UnitModel unit, IUnitView iUnitView,SubscriptionField<bool> isObstacle)
         {
@@ -17,10 +18,16 @@ namespace MobileGame
             _transform = iUnitView.objectTransform;
             _isObstacle = isObstacle;
 
-            var allGroundView = iUnitView.objectTransform.GetComponentsInChildren<OnTriggerView>();
-            foreach (var item in allGroundView)
+            _allGroundView = iUnitView.objectTransform.GetComponentsInChildren<OnTriggerView>();
+            foreach (var item in _allGroundView)
                 item.evtUpdate += DetectGround;
             count = 0;
+        }
+
+        protected override void OnDispose()
+        {
+            foreach (var item in _allGroundView)
+                item.evtUpdate -= DetectGround;
         }
 
         private void DetectGround(Collider2D _, bool isEnter)

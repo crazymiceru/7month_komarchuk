@@ -20,8 +20,6 @@ namespace MobileGame
             _equipPlace = data.gameObject.GetComponent<RectTransform>();
             _originalPositionPlace = _equipPlace.position;
             _upgradeModel = upgradeModel;
-            _upgradeModel.EvtAddItem += AddItem;
-            _upgradeModel.EvtRemoveItem += RemoveItem;
             foreach (var item in _upgradeModel.allPlaces)
             {
                 //Debug.Log($"Place:{item.Value.name}");
@@ -35,7 +33,15 @@ namespace MobileGame
                     }
                 }
                 else Debug.LogWarning($"Dont find the transform Place:{item.Value.name}");
-            }            
+            }
+            _upgradeModel.EvtAddItem += AddItem;
+            _upgradeModel.EvtRemoveItem += RemoveItem;
+        }
+
+        protected override void OnDispose()
+        {
+            _upgradeModel.EvtAddItem -= AddItem;
+            _upgradeModel.EvtRemoveItem -= RemoveItem;
         }
 
         private void AddItem(UpgradeItemCfg upgradeItemCfg, bool isHave)
@@ -46,7 +52,7 @@ namespace MobileGame
                 image.enabled = true;
                 image.sprite = upgradeItemCfg.Sprite;
 
-                DOTween.Sequence().Append(_equipPlace.DOShakePosition(2f, 30f))                
+                DOTween.Sequence().Append(_equipPlace.DOShakePosition(2f, 30f))
                 .Append(_equipPlace.DOMove(_originalPositionPlace, 1));
             }
             else Debug.LogWarning($"There is no installable place:{upgradeItemCfg.PlaceOfUpgrade.name}");

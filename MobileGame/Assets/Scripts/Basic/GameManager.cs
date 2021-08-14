@@ -9,6 +9,7 @@ namespace MobileGame
         {
             Time.timeScale = 1;
             LoadResources.Init();
+            LoadBundles.Init();
             ListControllers.Init();
 
             ListControllers.Add(new GlobalGameController());
