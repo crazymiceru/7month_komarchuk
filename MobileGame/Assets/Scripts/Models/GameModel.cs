@@ -17,17 +17,17 @@ namespace MobileGame
         #region rewards
 
         public SubscriptionIntPrefs currentDayReward { get; }
-        public SubscriptionDatePrefs timeGetRewards { get; }
+        public SubscriptionDatePrefs DateTimeGetRewards { get; }
         public SubscriptionDatePrefs timeStartRewards { get; }
-
+        public SubscriptionField<int> durationNextReward { get; }
         #endregion
 
 
         #region FireBird
 
-        public SubscriptionField<DateTime> dateTimeDataBase { get; }
+        public SubscriptionField<DateTime> dataTimeDataBase { get; }
         public event Action evtUpdateDateTimeBase=delegate { };
-        public void UpdateDateTimeDataBase()
+        public void UpdateDataTimeDataBase()
         {
             evtUpdateDateTimeBase.Invoke();
         }
@@ -42,9 +42,10 @@ namespace MobileGame
             money = new SubscriptionIntPrefs(nameof(money));
             wood = new SubscriptionIntPrefs(nameof(wood));
             currentDayReward = new SubscriptionIntPrefs(nameof(currentDayReward));
-            timeGetRewards = new SubscriptionDatePrefs(nameof(timeGetRewards));
+            DateTimeGetRewards = new SubscriptionDatePrefs(nameof(DateTimeGetRewards));
             timeStartRewards = new SubscriptionDatePrefs(nameof(timeStartRewards));
-            dateTimeDataBase = new SubscriptionField<DateTime>();
+            durationNextReward = new SubscriptionField<int> { Value = 300 };
+            dataTimeDataBase = new SubscriptionField<DateTime>();
             currentLevel = new SubscriptionField<int> { Value = 0 };
             Analitics = new UnityAnalitics();
             this.ADS = ADS;

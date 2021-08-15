@@ -54,7 +54,7 @@ namespace MobileGame
                 {                    
                     long count = long.Parse(item.Value.ToString());
                     DateTimeOffset dateTimeOffset = DateTimeOffset.FromUnixTimeMilliseconds(count);                    
-                    _gameModel.dateTimeDataBase.Value = dateTimeOffset.DateTime;
+                    _gameModel.dataTimeDataBase.Value = dateTimeOffset.DateTime;
                     //Debug.Log($"DateTimeDataBase: {_gameModel.dateTimeDataBase.Value}");
                 }
             }
@@ -66,7 +66,7 @@ namespace MobileGame
             while (true)
             {
                 yield return new WaitForSeconds(durationNextUpdateTime);
-                _gameModel.UpdateDateTimeDataBase();
+                _gameModel.UpdateDataTimeDataBase();
             }
         }
 

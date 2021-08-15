@@ -20,7 +20,7 @@ namespace MobileGame
         {
             _controlM.isNewTouch.Value = false;
             if (Input.touches.Length > 0)
-            {
+            {                
                 var item = Input.touches[0];
                 if (item.phase == TouchPhase.Moved || item.phase == TouchPhase.Began)
                 {
