@@ -9,20 +9,23 @@ public sealed class SubscriptionDatePrefs : iReadOnlySubscriptionField<DateTime>
         set
         {
             _value = value;
-            PlayerPrefs.SetString(_name, _value.ToString());
+            PlayerPrefs.SetString(_namePrefs, _value.ToString());
             evtChange.Invoke(value);
         }
     }
     private DateTime _value;
-    private string _name;
+    private string _namePrefs;
     private event Action<DateTime> evtChange = delegate { };
 
     public SubscriptionDatePrefs(string name)
     {
-        _name = name;
-        var result = PlayerPrefs.GetString(_name, "");
-        if (result.Equals("")) Value = new DateTime(2000, 1, 1);
-        else Value = DateTime.Parse(PlayerPrefs.GetString(_name, ""));
+        _namePrefs = name;
+        var result = PlayerPrefs.GetString(_namePrefs, "");
+        if (!result.Equals("") && DateTime.TryParse(result, out DateTime dateTime))
+        {
+            Value = dateTime;
+        }
+        else Value = new DateTime(2000, 1, 1);
     }
 
     public void Subscribe(Action<DateTime> func)

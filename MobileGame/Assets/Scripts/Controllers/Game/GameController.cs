@@ -9,7 +9,7 @@ namespace MobileGame
         private UnitModel _playerModel;
         private Vector3 _startCameraPosition;
 
-        private ControlLeak _controlLeak = new ControlLeak("GameBuild");
+        private ControlLeak _controlLeak = new ControlLeak("GameController");
 
         internal GameController(GameModel gameModel, UnitModel playerModel)
         {
