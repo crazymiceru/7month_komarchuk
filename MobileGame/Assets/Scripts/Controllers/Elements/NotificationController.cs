@@ -7,7 +7,6 @@ using Unity.Notifications.Android;
 using Unity.Notifications.iOS;
 #endif
 
-
 namespace MobileGame
 {
     internal sealed class NotificationController : ControllerBasic
@@ -16,8 +15,9 @@ namespace MobileGame
         private GameModel _gameModel;
         private const string _NotifierId = "test";
         private const string _largeIconIDReward = "id_reward";
+#if UNITY_ANDROID
         private AndroidNotificationChannel _androidNotificationChanel;
-
+#endif
         internal NotificationController(GameModel gameModel)
         {
             _gameModel = gameModel;

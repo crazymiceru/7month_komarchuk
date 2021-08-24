@@ -18,7 +18,7 @@ namespace MobileGame
             else
             {
 #if UNITY_STANDALONE_WIN
-                AddController(new InputController(controlM));
+                AddController(new InputController(controlModel));
 #else
                 AddController(new TouchController(controlModel));
 #endif
@@ -26,11 +26,11 @@ namespace MobileGame
 
             bool isRemoteConnected()
             {
-                bool result = false;
 #if UNITY_EDITOR
-                result = UnityEditor.EditorApplication.isRemoteConnected;
+                return UnityEditor.EditorApplication.isRemoteConnected;
+#else
+                return false;
 #endif
-                return result;
             }
         }
     }
